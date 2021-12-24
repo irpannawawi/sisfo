@@ -15,9 +15,8 @@ class User extends Db{
 			$this->conn->query("SELECT * FROM user WHERE username='$username'");
 	}
 
-	public function createUser($username, $nip, $password, $nama, $level, $gender, $foto, $status){
-		$password = password_hash($password);
-		$query = 'INSERT INTO user(username, nip, password, nama, level, gender, foto, status)	VALUES("$username", "$nip", "$password", "$nama", "$level", "$gender", "$foto", "$status")';
+	public function deleteUser($id){
+		$query = "DELETE FROM user WHERE id='$id'";
 		return $this->conn->query($query);
 	}
 
@@ -39,5 +38,10 @@ class User extends Db{
 		return $this->conn->query($sql);
 	}
 
-
+	public function saveUser($data, $id=null){
+		if($id==null){
+			$sql = "INSERT INTO user(username, nip, password, nama, level, gender, foto, status) VALUES('".$data['username']."', '".$data['nip']."', '".password_hash($data['password'])."', '".$data['namaLengkap']."','".$data['level']."', '".$data['jenisKelamin']."', 'avatar.jpg', 'Aktif' )";
+				return $this->conn->query($sql);
+		}
+	}
 }

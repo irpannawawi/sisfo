@@ -31,7 +31,7 @@
       <div class="container-fluid">
         <div class="row">
           <div class="card col">
-            <div class="card-header"><h5 class="float-left">Data Pengguna</h5> <button class="float-right btn btn-success" data-toggle="modal" data-target="#modal-add-pangkat"><i class="fa fa-plus"></i> Tambah data</button></div>
+            <div class="card-header"><h5 class="float-left">Data Pengguna</h5> <button class="float-right btn btn-success" data-toggle="modal" data-target="#modal-add-user"><i class="fa fa-plus"></i> Tambah data</button></div>
             <div class="card-body">
               <!-- get list data Jabatan -->
                 <?php 
@@ -114,23 +114,60 @@
   </div>
 </div>
 <!-- Modal -->
-<div class="modal fade" id="modal-add-pangkat" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+<div class="modal fade" id="modal-add-user" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
-    <div class="modal-content">
+    <div class="modal-content  bg-primary">
       <div class="modal-header">
         <h5 class="modal-title" id="editModalLabel">Baru</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-        <form action="<?=BASE_URL?>/admin/master_data/act_add_jenis.php" method="POST">
+
       <div class="modal-body">
-          <input type="text" value=""  name="jabatan" class="form-control">
+        <div class="form-group">
+          <label for="">Username</label>
+          <input type="text" class="form-control" id="inputUsername" required autocomplete="off">
+        </div>
+        <div class="form-group">
+          <label for="">NIP</label>
+          <input type="text" class="form-control" id="inputNip" required autocomplete="off">
+        </div>
+        <div class="form-group">
+          <label for="">Password</label>
+          <input type="password" class="form-control" id="inputPassword" required>
+        </div>
+        <div class="form-group">
+          <label for="">Nama Lengkap</label>
+          <input type="text" class="form-control" id="inputNamaLengkap" required>
+        </div>
+        <div class=" row">
+          <div class="col-6">
+          <label for="">Jenis Kelamin</label>
+          </div>
+         <div class="form-group">
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="jk" value="Laki-laki">
+              <label class="form-check-label">Laki-laki</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="jk" value="Perempuan">
+              <label class="form-check-label">Perempuan</label>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="">Level</label>
+          <select id="inputLevel" class="form-control">
+            <option value="Admin">Admin</option>
+            <option value="User">User</option>
+          </select>
+        </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-        <input type="submit" class="btn btn-primary" value="Simpan"></input>
-        </form>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+        <button onclick="addUser()" class="btn btn-success" >Simpan</button>
+
       </div>
     </div>
   </div>
@@ -151,12 +188,48 @@
 <script src="<?=BASE_URL?>/theme/AdminLTE/plugins/datatables-buttons/js/buttons.print.min.js"></script>
 <script src="<?=BASE_URL?>/theme/AdminLTE/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
 <script>
+  url = '<?=BASE_URL?>/admin/data_pengguna/insert_data.php';
+
   $('#table').DataTable();
   function fill_edit_form(id,nama){
     $('#editFormJabatan').val(nama)
     $('#editFormId').val(id)
   }
 
+
+function addUser(){
+  let inputUsername = $('#inputUsername')
+  let inputNip = $('#inputNip')
+  let inputPassword = $('#inputPassword')
+  let inputNamaLengkap = $('#inputNamaLengkap')
+  let inputJenisKelamin = $("input[name*='jk']")
+  let inputLevel = $('#inputLevel')
+  let data = {
+    username     : inputUsername.val(),
+    nip          : inputNip.val(),
+    password     : inputPassword.val(),
+    namaLengkap  : inputNamaLengkap.val(),
+    jenisKelamin : inputJenisKelamin.val(),
+    level        : inputLevel.val()
+    }
+  $.post(url, data, function(data){
+    data = JSON.parse(data)
+    console.log(data)
+    if (data.status == 'ok') {
+      alert('ok')
+      inputUsername.val('')
+      inputNip.val('')
+      inputPassword.val('')
+      inputNamaLengkap.val('')
+      inputJenisKelamin.val('')
+      inputLevel.val('')
+      $('#modal-add-user .close').click();
+      Swal.fire('Berhasil', 'Data berhasil ditambahkan', 'success');
+    }else{
+      alert(data)
+    }
+  });
+}
 function deleteData(id){
     Swal.fire({
       title: 'Hapus data?',
@@ -165,8 +238,17 @@ function deleteData(id){
     }).then((result) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
-        Swal.fire('Deleted!', 'data berhasil dihapus', 'success')
-        window.location.href = '<?=BASE_URL?>/admin/master_data/delete_jenis.php?id='+id
+        urldelete = '<?=BASE_URL?>/admin/data_pengguna/delete.php'
+        $.post(urldelete, {id:id}, function(data){
+          data = JSON.parse(data)
+          if (data.status == 'ok') {
+            Swal.fire('Dihapus', 'Data user berhasil terhapus', 'error').then((result)=>{
+              window.location.href = '<?=BASE_URL?>'+'/admin/data_pengguna/list_data_pengguna.php'
+            });
+          }else{
+            console.log(data)
+          }
+        })
       } else if (result.isDenied) {
         Swal.fire('Changes are not saved', '', 'info')
       }
