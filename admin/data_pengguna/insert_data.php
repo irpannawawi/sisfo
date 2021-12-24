@@ -9,7 +9,6 @@ $data['jenisKelamin'] 	= $_POST['jenisKelamin'];
 $data['level'] 			= $_POST['level'];
 
 
-
 $userObj = new User;
 $res = $userObj->saveUser($data); 
 

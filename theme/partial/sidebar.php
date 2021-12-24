@@ -91,7 +91,7 @@
             </ul>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="<?=BASE_URL?>/admin/data_kepegawaian/list_pegawai.php" class="nav-link">
               <i class="nav-icon fas fa-street-view"></i>
               <p>
                 Data Kepegawaian

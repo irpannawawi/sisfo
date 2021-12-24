@@ -22,7 +22,7 @@ if (empty($username) OR empty($password)) {
 			$_SESSION['nama'] = $userData->nama;
 			$_SESSION['level'] = $userData->level;
 			$_SESSION['foto'] = $userData->foto;
-			if($_SESSION['level'] == 'admin'){
+			if($_SESSION['level'] == 'Admin'){
 				header('location: ../admin/dashboard.php');
 			}else{
 				print_r($_SESSION['level']);

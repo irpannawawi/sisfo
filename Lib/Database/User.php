@@ -40,7 +40,16 @@ class User extends Db{
 
 	public function saveUser($data, $id=null){
 		if($id==null){
-			$sql = "INSERT INTO user(username, nip, password, nama, level, gender, foto, status) VALUES('".$data['username']."', '".$data['nip']."', '".password_hash($data['password'])."', '".$data['namaLengkap']."','".$data['level']."', '".$data['jenisKelamin']."', 'avatar.jpg', 'Aktif' )";
+			$sql = "INSERT INTO user(username, nip, password, nama, level, gender, foto, status) VALUES('".$data['username']."', '".$data['nip']."', '".password_hash($data['password'], PASSWORD_DEFAULT)."', '".$data['namaLengkap']."','".$data['level']."', '".$data['jenisKelamin']."', 'avatar.jpg', 'Aktif' )";
+				return $this->conn->query($sql);
+		}else{
+			if ($data['password']!='') {
+				$password = password_hash($data['password'], PASSWORD_DEFAULT);
+			}else{
+				$user = $this->conn->query("select password from user where id='$id'")->fetch_object();
+				$password = $user->password;
+			}
+			$sql = "UPDATE user SET username='".$data['username']."', nip='".$data['nip']."',password='".$password."', nama='".$data['namaLengkap']."', level='".$data['level']."',gender='".$data['jenisKelamin']."' WHERE id='".$id."'";
 				return $this->conn->query($sql);
 		}
 	}
