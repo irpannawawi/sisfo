@@ -20,6 +20,7 @@ if (empty($username) OR empty($password)) {
 			session_start();
 			$_SESSION['username'] = $userData->username;
 			$_SESSION['nama'] = $userData->nama;
+			$_SESSION['nip'] = $userData->nip;
 			$_SESSION['level'] = $userData->level;
 			$_SESSION['foto'] = $userData->foto;
 			if($_SESSION['level'] == 'Admin'){

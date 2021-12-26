@@ -34,475 +34,460 @@ $pegawai = $pegawaiObj->getPegawaiById($_GET['id'])->fetch_object();
 	<!-- Main content -->
 	<div class="content">
 		<div class="container-fluid">
-			<div class="row">
-				<ul class="nav nav-tabs">
-					<li class="nav-item">
-						<a href="#" class="nav-link active"  title="Data Pegawai"><i class="fa fa-user fa-fw"></i>Data Diri</a>
-					</li>
-					<li class="nav-item">
-						<a href="index.php?controller=pegawai&method=keluarga&nip=<?php echo $pegawai->nip;?>" class="nav-link"  title="Data Istri / Suami"><i class="fa fa-street-view fa-fw"></i>Data Istri / Suami</a>
-					</li>
-					<li class="nav-item">
-						<a href="index.php?controller=pegawai&method=anak&nip=<?php echo $pegawai->nip;?>" class="nav-link"  title="Data Anak"><i class="fa fa-venus-double fa-fw"></i>Data Anak</a>
-					</li>
-					<li class="nav-item">
-						<a href="index.php?controller=pegawai&method=gaji&nip=<?php echo $pegawai->nip;?>" class="nav-link" ><i class="fa fa-money fa-fw"></i>Penghasilan</a>
-					</li>
-					<li class="nav-item">
-						<a href="index.php?controller=pegawai&method=berkas&nip=<?php echo $pegawai->nip;?>" class="nav-link"  title="Lampiran"><i class="fa fa-file-archive-o fa-fw"></i>Lampiran</a>
-					</li>
-				</ul>
-
-
-
-
-
-
-
-				<div class="col-12">
-
-
-
-
-
-
-
-
-				</div>
-
-				<br>
-				<br>
-				<!-- INI UNTUK ISI -->
-				<div class="row">
-					<div class="col-lg-12">
-						<div class="panel panel-default">
-							<!-- INI BAGIAN ISI UNTUK JUDUL TABEL -->
-							<div class="panel-heading bg-aqua">
-								<i class="fa fa-user fa-fw"></i> Data Diri
-								<div class="pull-right">
-									<label class="label" style="font-size: 15px;"> Pegawai : <?php echo $pegawai->nama;?>
-								</label>
-							</div>
-						</div>
-
-						<!-- INI BAGIAN ISI UTAMA -->
-						<div class="panel-body table-responsive">
-							<!-- INI BAGIAN TABEL -->
-							<form method="post" action="laporan/surat_keterangan.php" target="_blank">
-								<input name="pencetak" type="hidden" value="<?php echo $_SESSION['nama'];?>"></input>
-								<input name="nip_cetak" type="hidden" value="<?php echo $_SESSION['nip'];?>"></input>
-								<input name="nip" type="hidden" value="<?php echo $pegawai->nip?>"></input>
-								<div class="col-12 m-3 btn-group float-right">
-									<button type="submit" class="btn btn-sm btn-primary m-2 p-1" name="ctk"  title="Data Pegawai"><i class="fa fa-print fa-fw"></i> Cetak</button>
+			<div class="card">
+				<div class="card-header">
+					<ul class="nav nav-tabs float-left">
+						<li class="nav-item">
+							<a href="#" class="nav-link active" id="tabDataDiri" onclick="switchTabs('dataDiri','<?=$pegawai->nip?>')"><i class="fa fa-user fa-fw"></i>Data Diri</a>
+						</li>
+						<li class="nav-item">
+							<a href="#" class="nav-link" id="tabSuamiIstri" onclick="switchTabs('dataSuamiIstri','<?=$pegawai->nip?>')" ><i class="fa fa-street-view fa-fw"></i>Data Istri / Suami</a>
+						</li>
+						<li class="nav-item">
+							<a href="#" class="nav-link"  id="tabAnak" onclick="switchTabs('dataAnak','<?=$pegawai->nip?>')"><i class="fa fa-venus-double fa-fw"></i>Data Anak</a>
+						</li>
+						<li class="nav-item">
+							<a href="#" class="nav-link" id="tabPenghasilan" onclick="switchTabs('dataPenghasilan','<?=$pegawai->nip?>')"><i class="fa fa-money fa-fw"></i>Penghasilan</a>
+						</li>
+						<li class="nav-item">
+							<a href="#" class="nav-link"  id="tabLampiran" onclick="switchTabs('dataLampiran','<?=$pegawai->nip?>')"><i class="fa fa-file-archive-o fa-fw"></i>Lampiran</a>
+						</li>
+					</ul>
+					<form method="post" action="<?=BASE_URL?>/admin/data_kepegawaian/surat_keterangan.php" target="_blank">
+									<input name="pencetak" type="hidden" value="<?php echo $_SESSION['nama'];?>"></input>
+									<input name="nip_cetak" type="hidden" value="<?php echo $_SESSION['nip'];?>"></input>
+									<input name="nip" type="hidden" value="<?php echo $pegawai->nip?>"></input>
+									<div class="float-right">
+										<button type="submit" class="btn btn-sm btn-primary m-2 p-1" name="ctk"  title="Data Pegawai"><i class="fa fa-print fa-fw"></i> Cetak</button>
+									</div>
 								</form>
+				</div>	
+				<div class="card-body" id="pageContent">
+					<!-- INI UNTUK ISI -->
+					<div class="row">
+						<div class="col-lg-12">
+							<div class="panel panel-default">
+								<!-- INI BAGIAN ISI UNTUK JUDUL TABEL -->
+								<div class="panel-heading bg-aqua">
+									<i class="fa fa-user fa-fw"></i> Data Diri
+									<div class="pull-right">
+										<label class="label" style="font-size: 15px;"> Pegawai : <?php echo $pegawai->nama;?>
+									</label>
+								</div>
 							</div>
-							<button class="btn btn-sm btn-warning m-2 p-1 float-right" data-toggle="modal" data-target="#modal-danger"><li class="fa fa-edit"></li> Edit</button>
-							<table width="100%" class="tabel">
-								<hr>
-								<!--baris 1-->
-								<tr>
-									<td width="20%">
-										<div class="form-group">
-											Nip
-										</div>
-									</td>
-									<td width="3%" >
-										<div class="form-group">
-											:
-										</div>
-									</td>
-									<td width="30%">
-										<div class="form-group">
-											<?php echo $pegawai->nip;?>
-										</div>
-									</td>
-									<td width="1%" ></td>
-									<td width="22%">
-										<div class="form-group">
-											Pangkat / Golongan 
-										</div>
-									</td>
-									<td width="3%" >
-										<div class="form-group">
-											:
-										</div>
-									</td>
-									<td width="23%">
-										<div class="form-group">
-											<?php echo $pegawai->pangkat;?>
-										</div>
-									</td>
-								</tr>
-								<!--baris 2-->
-								<tr>
-									<td>
-										<div class="form-group">
-											Nama
-										</div>
-									</td>
-									<td>
-										<div class="form-group">
-											:
-										</div>
-									</td>
-									<td>
-										<div class="form-group">
-											<?php echo $pegawai->nama;?>
-										</div>
-									</td>
-									<td ></td>
-									<td>
-										<div class="form-group">
-											TMT / Golongan 
-										</div>
-									</td>
-									<td>
-										<div class="form-group">
-											:
-										</div>
-									</td>
-									<td>
-										<div class="form-group" id="data_1">
-											<?php if($pegawai->tmt_golongan=="0000-00-00") { } else{  echo TanggalIndo($pegawai->tmt_golongan); }?>
-										</div>
-									</td>
-								</tr>
-								<!-- baris 3 -->
-								<tr>
-									<td>
-										<div class="form-group">
-											Tempat Lahir
-										</div>
-									</td>
-									<td>
-										<div class="form-group">
-											:
-										</div>
-									</td>
-									<td>
-										<div class="form-group">
-											<?php echo $pegawai->tempat_lahir;?>
-										</div>
-									</td>
-									<td ></td>
-									<td>
-										<div class="form-group">
-											Jenis Kepegawaian
-										</div>
-									</td>
-									<td>
-										<div class="form-group">
-											:
-										</div>
-									</td>
-									<td>
-										<div class="form-group">
-											<?php echo $pegawai->jenis_pegawai;?>
-										</div>
-									</td>
-								</tr>
-								<!-- baris 4 -->
-								<tr>
-									<td>
-										<div class="form-group">
-											Tanggal Lahir
-										</div>
-									</td>
-									<td >
-										<div class="form-group">
-											:
-										</div>
-									</td>
-									<td>
-										<div class="form-group">
-											<?php if($pegawai->tgl_lahir=="0000-00-00"){} else { echo TanggalIndo($pegawai->tgl_lahir); }?>
-										</div>
-									</td>
-									<td ></td>
-									<td>
-										<div class="form-group">
-											TMT Capeg
-										</div>
-									</td>
-									<td>
-										<div class="form-group">
-											:
-										</div>
-									</td>
-									<td>
-										<div class="form-group">
-											<?php if($pegawai->tmt_capeg=="0000-00-00"){}else { echo TanggalIndo($pegawai->tmt_capeg);}?>
-										</div>
-									</td>
-								</tr>
-								<!-- baris 5 -->
-								<tr>
-									<td>
-										<div class="form-group">
-											Gender
-										</div>
-									</td>
-									<td >
-										<div class="form-group">
-											:
-										</div>
-									</td>
-									<td>
-										<div class="form-group">
-											<?php
-											if($pegawai->gender=="l")
-											{
-												echo "Laki - Laki";
-											}else {
-												echo "Perempuan";
-											}
-											?>
-										</div>
-									</td>
-									<td ></td>
-									<td>
-										<div class="form-group">
-											Status Kepegawaian
-										</div>
-									</td>
-									<td>
-										<div class="form-group">
-											:
-										</div>
-									</td>
-									<td>
-										<div class="form-group">
-											<?php echo $pegawai->status_pegawai;?>
-										</div>
-									</td>
-								</tr>
-								<!-- baris 6  -->
-								<tr>
-									<td>
-										<div class="form-group">
-											Agama
-										</div>
-									</td>
-									<td >
-										<div class="form-group">
-											:
-										</div>
-									</td>
-									<td>
-										<div class="form-group">
-											<?php echo $pegawai->agama;?>
-										</div>
-									</td>
-									<td ></td>
-									<td>
-										<div class="form-group">
-											Jabatan Strukural
-										</div>
-									</td>
-									<td>
-										<div class="form-group">
-											:
-										</div>
-									</td>
-									<td>
-										<div class="form-group">
-											<?php echo $pegawai->jabatan;?>
-										</div>
-									</td>
-								</tr>
-								<!-- baris 6  -->
-								<tr>
-									<td>
-										<div class="form-group">
-											Kebangsaan
-										</div>
-									</td>
-									<td >
-										<div class="form-group">
-											:
-										</div>
-									</td>
-									<td>
-										<div class="form-group">
-											<?php echo $pegawai->kebangsaan;?>
-										</div>
-									</td>
-									<td ></td>
-									<td>
-										<div class="form-group">
-											Digaji Menurut <br>( PP / SK )
-										</div>
-									</td>
-									<td>
-										<div class="form-group">
-											:
-										</div>
-									</td>
-									<td>
-										<div class="form-group">
-											<?php echo $pegawai->digaji_menurut;?>
-										</div>
-									</td>
-								</tr>
-								<!-- baris 7  -->
-								<tr>
-									<td>
-										<div class="form-group">
-											Jumlah Keluarga
-										</div>
-									</td>
-									<td >
-										<div class="form-group">
-											:
-										</div>
-									</td>
-									<td>
-										<div class="form-group">
-											<?php echo $pegawai->jumlah_keluarga;?>
-										</div>
-									</td>
-									<td ></td>
-									<td>
-										<div class="form-group">
-											Gaji Pokok
-										</div>
-									</td>
-									<td>
-										<div class="form-group">
-											:
-										</div>
-									</td>
-									<td>
-										<div class="form-group">
-											Rp.   <?php echo number_format($pegawai->gaji_pokok,0,".",".");?>
-										</div>
-									</td>
-								</tr>
-								<!-- baris 8  -->
-								<tr>
-									<td rowspan="2">
-										<div class="form-group">
-											Alamat
-										</div>
-									</td>
-									<td rowspan="2">
-										<div class="form-group">
-											:
-										</div>
-									</td>
-									<td rowspan="2">
-										<div class="form-group">
-											<?php echo $pegawai->alamat;?><br> Rt <?php echo $pegawai->rt;?>/Rw<?php echo $pegawai->rw;?>, Desa <?php echo $pegawai->rt;?><br> Kecamatan <?php echo $pegawai->kecamatan;?><br> Kabupaten <?php echo $pegawai->kabupaten;?>
-										</div>
-									</td>
-									<td ></td>
-									<td>
-										<div class="form-group">
-											Besarnya Penghasilan
-										</div>
-									</td>
-									<td>
-										<div class="form-group">
-											:
-										</div>
-									</td>
-									<td>
-										<div class="form-group">
-											<?php 
-											$sql    = $pegawaiObj->conn->query("SELECT * FROM gaji WHERE nip='$pegawai->nip' ORDER BY id DESC");
-											$row_gaji = mysqli_fetch_array($sql);
-											?>
-											Rp. <?php echo number_format($row_gaji['gaji_bersih'],0,".",".");?>
-										</div>
-									</td>
-								</tr>
-								<tr>
-									<td width="3%"></td>
-									<td>
-										<div class="form-group">
-											Nomor WhatsApp
-										</div>
-									</td>
-									<td>
-										<div class="form-group">
-											:
-										</div>
-									</td>
-									<td>
-										<div class="form-group">
-											<?php echo $pegawai->wa;?>
-										</div>
-									</td>
-								</tr>
-								<!-- baris 9  -->
-								<tr>
-									<td>
-										<div class="form-group">
-											SK Terakhir
-										</div>
-									</td>
-									<td >
-										<div class="form-group">
-											:
-										</div>
-									</td>
-									<td>
-										<div class="form-group">
-											<?php echo $pegawai->sk_terakhir;?>
-										</div>
-									</td>
-									<td ></td>
-									<td>
-										<div class="form-group">
-											Masa Kerja Golongan
-										</div>
-									</td>
-									<td>
-										<div class="form-group">
-											:
-										</div>
-									</td>
-									<td>
-										<div class="form-group">
-											<?php echo $pegawai->masa_kerja_golongan;?>
-										</div>
-									</td>
-								</tr>
-								<!-- baris 10  -->
-								<tr>
-									<td>
-										<div class="form-group">
-											NPWP
-										</div>
-									</td>
-									<td >
-										<div class="form-group">
-											:
-										</div>
-									</td>
-									<td>
-										<div class="form-group">
-											<?php echo $pegawai->npwp;?>
-										</div>
-									</td>
-									<td ></td>
-									<td>
-										<div class="form-group">
-											Masa Kerja Keseluruhan
-										</div>
-									</td>
-									<td>
-										<div class="form-group">
-											:
-										</div>
-									</td>
-									<td>
-										<div class="form-group">
-											<?php echo $pegawai->masa_kerja_keseluruhan;?>
-										</div>
-									</td>
-								</tr>
-							</table>
+
+							<!-- INI BAGIAN ISI UTAMA -->
+							<div class="panel-body table-responsive">
+								<!-- INI BAGIAN TABEL -->
+								
+								<button class="btn btn-sm btn-warning m-2 p-1 float-right" data-toggle="modal" data-target="#modal-danger"><li class="fa fa-edit"></li> Edit</button>
+								<table width="100%" class="tabel">
+									<hr>
+									<!--baris 1-->
+									<tr>
+										<td width="20%">
+											<div class="form-group">
+												Nip
+											</div>
+										</td>
+										<td width="3%" >
+											<div class="form-group">
+												:
+											</div>
+										</td>
+										<td width="30%">
+											<div class="form-group">
+												<?php echo $pegawai->nip;?>
+											</div>
+										</td>
+										<td width="1%" ></td>
+										<td width="22%">
+											<div class="form-group">
+												Pangkat / Golongan 
+											</div>
+										</td>
+										<td width="3%" >
+											<div class="form-group">
+												:
+											</div>
+										</td>
+										<td width="23%">
+											<div class="form-group">
+												<?php echo $pegawai->pangkat;?>
+											</div>
+										</td>
+									</tr>
+									<!--baris 2-->
+									<tr>
+										<td>
+											<div class="form-group">
+												Nama
+											</div>
+										</td>
+										<td>
+											<div class="form-group">
+												:
+											</div>
+										</td>
+										<td>
+											<div class="form-group">
+												<?php echo $pegawai->nama;?>
+											</div>
+										</td>
+										<td ></td>
+										<td>
+											<div class="form-group">
+												TMT / Golongan 
+											</div>
+										</td>
+										<td>
+											<div class="form-group">
+												:
+											</div>
+										</td>
+										<td>
+											<div class="form-group" id="data_1">
+												<?php if($pegawai->tmt_golongan=="0000-00-00") { } else{  echo TanggalIndo($pegawai->tmt_golongan); }?>
+											</div>
+										</td>
+									</tr>
+									<!-- baris 3 -->
+									<tr>
+										<td>
+											<div class="form-group">
+												Tempat Lahir
+											</div>
+										</td>
+										<td>
+											<div class="form-group">
+												:
+											</div>
+										</td>
+										<td>
+											<div class="form-group">
+												<?php echo $pegawai->tempat_lahir;?>
+											</div>
+										</td>
+										<td ></td>
+										<td>
+											<div class="form-group">
+												Jenis Kepegawaian
+											</div>
+										</td>
+										<td>
+											<div class="form-group">
+												:
+											</div>
+										</td>
+										<td>
+											<div class="form-group">
+												<?php echo $pegawai->jenis_pegawai;?>
+											</div>
+										</td>
+									</tr>
+									<!-- baris 4 -->
+									<tr>
+										<td>
+											<div class="form-group">
+												Tanggal Lahir
+											</div>
+										</td>
+										<td >
+											<div class="form-group">
+												:
+											</div>
+										</td>
+										<td>
+											<div class="form-group">
+												<?php if($pegawai->tgl_lahir=="0000-00-00"){} else { echo TanggalIndo($pegawai->tgl_lahir); }?>
+											</div>
+										</td>
+										<td ></td>
+										<td>
+											<div class="form-group">
+												TMT Capeg
+											</div>
+										</td>
+										<td>
+											<div class="form-group">
+												:
+											</div>
+										</td>
+										<td>
+											<div class="form-group">
+												<?php if($pegawai->tmt_capeg=="0000-00-00"){}else { echo TanggalIndo($pegawai->tmt_capeg);}?>
+											</div>
+										</td>
+									</tr>
+									<!-- baris 5 -->
+									<tr>
+										<td>
+											<div class="form-group">
+												Gender
+											</div>
+										</td>
+										<td >
+											<div class="form-group">
+												:
+											</div>
+										</td>
+										<td>
+											<div class="form-group">
+												<?php
+												if($pegawai->gender=="l")
+												{
+													echo "Laki - Laki";
+												}else {
+													echo "Perempuan";
+												}
+												?>
+											</div>
+										</td>
+										<td ></td>
+										<td>
+											<div class="form-group">
+												Status Kepegawaian
+											</div>
+										</td>
+										<td>
+											<div class="form-group">
+												:
+											</div>
+										</td>
+										<td>
+											<div class="form-group">
+												<?php echo $pegawai->status_pegawai;?>
+											</div>
+										</td>
+									</tr>
+									<!-- baris 6  -->
+									<tr>
+										<td>
+											<div class="form-group">
+												Agama
+											</div>
+										</td>
+										<td >
+											<div class="form-group">
+												:
+											</div>
+										</td>
+										<td>
+											<div class="form-group">
+												<?php echo $pegawai->agama;?>
+											</div>
+										</td>
+										<td ></td>
+										<td>
+											<div class="form-group">
+												Jabatan Strukural
+											</div>
+										</td>
+										<td>
+											<div class="form-group">
+												:
+											</div>
+										</td>
+										<td>
+											<div class="form-group">
+												<?php echo $pegawai->jabatan;?>
+											</div>
+										</td>
+									</tr>
+									<!-- baris 6  -->
+									<tr>
+										<td>
+											<div class="form-group">
+												Kebangsaan
+											</div>
+										</td>
+										<td >
+											<div class="form-group">
+												:
+											</div>
+										</td>
+										<td>
+											<div class="form-group">
+												<?php echo $pegawai->kebangsaan;?>
+											</div>
+										</td>
+										<td ></td>
+										<td>
+											<div class="form-group">
+												Digaji Menurut <br>( PP / SK )
+											</div>
+										</td>
+										<td>
+											<div class="form-group">
+												:
+											</div>
+										</td>
+										<td>
+											<div class="form-group">
+												<?php echo $pegawai->digaji_menurut;?>
+											</div>
+										</td>
+									</tr>
+									<!-- baris 7  -->
+									<tr>
+										<td>
+											<div class="form-group">
+												Jumlah Keluarga
+											</div>
+										</td>
+										<td >
+											<div class="form-group">
+												:
+											</div>
+										</td>
+										<td>
+											<div class="form-group">
+												<?php echo $pegawai->jumlah_keluarga;?>
+											</div>
+										</td>
+										<td ></td>
+										<td>
+											<div class="form-group">
+												Gaji Pokok
+											</div>
+										</td>
+										<td>
+											<div class="form-group">
+												:
+											</div>
+										</td>
+										<td>
+											<div class="form-group">
+												Rp.   <?php echo number_format($pegawai->gaji_pokok,0,".",".");?>
+											</div>
+										</td>
+									</tr>
+									<!-- baris 8  -->
+									<tr>
+										<td rowspan="2">
+											<div class="form-group">
+												Alamat
+											</div>
+										</td>
+										<td rowspan="2">
+											<div class="form-group">
+												:
+											</div>
+										</td>
+										<td rowspan="2">
+											<div class="form-group">
+												<?php echo $pegawai->alamat;?><br> Rt <?php echo $pegawai->rt;?>/Rw<?php echo $pegawai->rw;?>, Desa <?php echo $pegawai->rt;?><br> Kecamatan <?php echo $pegawai->kecamatan;?><br> Kabupaten <?php echo $pegawai->kabupaten;?>
+											</div>
+										</td>
+										<td ></td>
+										<td>
+											<div class="form-group">
+												Besarnya Penghasilan
+											</div>
+										</td>
+										<td>
+											<div class="form-group">
+												:
+											</div>
+										</td>
+										<td>
+											<div class="form-group">
+												<?php 
+												$sql    = $pegawaiObj->conn->query("SELECT * FROM gaji WHERE nip='$pegawai->nip' ORDER BY id DESC");
+												$row_gaji = mysqli_fetch_array($sql);
+												?>
+												Rp. <?php echo number_format($row_gaji['gaji_bersih'],0,".",".");?>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td width="3%"></td>
+										<td>
+											<div class="form-group">
+												Nomor WhatsApp
+											</div>
+										</td>
+										<td>
+											<div class="form-group">
+												:
+											</div>
+										</td>
+										<td>
+											<div class="form-group">
+												<?php echo $pegawai->wa;?>
+											</div>
+										</td>
+									</tr>
+									<!-- baris 9  -->
+									<tr>
+										<td>
+											<div class="form-group">
+												SK Terakhir
+											</div>
+										</td>
+										<td >
+											<div class="form-group">
+												:
+											</div>
+										</td>
+										<td>
+											<div class="form-group">
+												<?php echo $pegawai->sk_terakhir;?>
+											</div>
+										</td>
+										<td ></td>
+										<td>
+											<div class="form-group">
+												Masa Kerja Golongan
+											</div>
+										</td>
+										<td>
+											<div class="form-group">
+												:
+											</div>
+										</td>
+										<td>
+											<div class="form-group">
+												<?php echo $pegawai->masa_kerja_golongan;?>
+											</div>
+										</td>
+									</tr>
+									<!-- baris 10  -->
+									<tr>
+										<td>
+											<div class="form-group">
+												NPWP
+											</div>
+										</td>
+										<td >
+											<div class="form-group">
+												:
+											</div>
+										</td>
+										<td>
+											<div class="form-group">
+												<?php echo $pegawai->npwp;?>
+											</div>
+										</td>
+										<td ></td>
+										<td>
+											<div class="form-group">
+												Masa Kerja Keseluruhan
+											</div>
+										</td>
+										<td>
+											<div class="form-group">
+												:
+											</div>
+										</td>
+										<td>
+											<div class="form-group">
+												<?php echo $pegawai->masa_kerja_keseluruhan;?>
+											</div>
+										</td>
+									</tr>
+								</table>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -853,8 +838,7 @@ $pegawai = $pegawaiObj->getPegawaiById($_GET['id'])->fetch_object();
 							<td   style="padding-right: 20px;">
 								<div class="form-group">
 									<select name="jabatan" style="width: 100%" id="jabatan" class="form-control select2">
-										<?php
-										$query_jabatan = "select * from jabatan WHERE jenis='jabatan'"; 
+										<?php 
 										$jabatan = $masterData->getJabatan();
 										while($row_jabatan = mysqli_fetch_array($jabatan)) 
 										{ 
@@ -1145,8 +1129,44 @@ $pegawai = $pegawaiObj->getPegawaiById($_GET['id'])->fetch_object();
 <script src="<?=BASE_URL?>/theme/AdminLTE/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
 <script src="<?=BASE_URL?>/theme/AdminLTE/plugins/datatables-buttons/js/buttons.print.min.js"></script>
 <script src="<?=BASE_URL?>/theme/AdminLTE/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
-<?php if ($_SESSION['updateSuccess']) { unset($_SESSION['updateSuccess'])?>
+<?php if (!empty($_SESSION['updateSuccess'])) { unset($_SESSION['updateSuccess'])?>
   <script>
     Swal.fire('Berhasil', 'Data pegawai telah dirubah', 'success');
   </script>
 <?php }?>
+
+<script>
+	function switchTabs(tabName, nip){
+		if(tabName == 'dataDiri'){
+			url = '<?=BASE_URL?>'+'/admin/data_kepegawaian/data_diri.php';
+			// switch active tab 
+			$('.nav-link').removeClass('active');
+			$('#tabDataDiri').addClass('active');
+		}else if(tabName == 'dataSuamiIstri'){
+			url = '<?=BASE_URL?>'+'/admin/data_kepegawaian/data_suami_istri.php';
+			// switch active tab 
+			$('.nav-link').removeClass('active');
+			$('#tabSuamiIstri').addClass('active');
+		}else if(tabName == 'dataAnak'){
+			url = '<?=BASE_URL?>'+'/admin/data_kepegawaian/data_anak.php';
+			// switch active tab 
+			$('.nav-link').removeClass('active');
+			$('#tabAnak').addClass('active');
+		}else if(tabName == 'dataPenghasilan'){
+			url = '<?=BASE_URL?>'+'/admin/data_kepegawaian/data_penghasilan.php';
+			// switch active tab 
+			$('.nav-link').removeClass('active');
+			$('#tabPenghasilan').addClass('active');
+		}else if(tabName == 'dataLampiran'){
+			url = '<?=BASE_URL?>'+'/admin/data_kepegawaian/data_lampiran.php';
+			// switch active tab 
+			$('.nav-link').removeClass('active');
+			$('#tabLampiran').addClass('active');
+		}
+		// load page 
+		$.get(url,{nip:nip},function(data){
+			$('#pageContent').html(data);
+		});
+
+	}
+</script>

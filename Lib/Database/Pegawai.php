@@ -10,11 +10,23 @@ class Pegawai extends Db{
 		return $this->conn->query($sql);
 	}
 
+	public function getByNip($nip)
+	{
+		$sql = "SELECT * FROM pegawai WHERE nip='$nip'";
+		return $this->conn->query($sql);
+	}
+
+	public function getKepalaDinas(){
+		$sql = "SELECT * from pegawai WHERE jabatan='KEPALA DINAS'";
+		return $this->conn->query($sql);
+	}
+
 	public function insert($nip,$nama,$tempat_lahir,$tgl_lahir,$gender,$agama,$kebangsaan,$jumlah_keluarga,$alamat,$sk_terakhir,$pangkat,$tmt_golongan,$jenis,$tmt_capeg,$status,$jabatan,$digaji,$gaji_pokok,$masa_golongan,$masa_keseluruhan,$npwp,$rt,$rw,$desa,$kecamatan,$kabupaten,$wa){
 		$query		= "INSERT INTO pegawai(nip, nama, tempat_lahir, tgl_lahir, gender, agama, kebangsaan, jumlah_keluarga, alamat, sk_terakhir, pangkat, tmt_golongan, jenis_pegawai, tmt_capeg, status_pegawai, jabatan, digaji_menurut, gaji_pokok, besarnya_penghasilan, masa_kerja_golongan, masa_kerja_keseluruhan, npwp, rt, rw, desa, kecamatan, kabupaten, wa) VALUES
 							   ('$nip','$nama','$tempat_lahir','$tgl_lahir','$gender','$agama','$kebangsaan','$jumlah_keluarga','$alamat','$sk_terakhir','$pangkat','$tmt_golongan','$jenis','$tmt_capeg','$status','$jabatan','$digaji','$gaji_pokok','0','$masa_golongan','$masa_keseluruhan','$npwp','$rt','$rw','$desa','$kecamatan','$kabupaten','$wa')";
 		return $this->conn->query($query);
 	}
+
 	public function update($id,$nip,$nama,$tempat_lahir,$tgl_lahir,$gender,$agama,$kebangsaan,$jumlah_keluarga,$alamat,$sk_terakhir,$pangkat,$tmt_golongan,$jenis,$tmt_capeg,$status,$jabatan,$digaji,$gaji_pokok,$penghasilan,$masa_golongan,$masa_keseluruhan,$npwp,$rt,$rw,$desa,$kecamatan,$kabupaten,$wa){
 		$query		= "UPDATE pegawai SET
 								nip 						= '$nip',
