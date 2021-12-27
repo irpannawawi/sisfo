@@ -11,7 +11,7 @@ $id = $_POST['id'];
 
 $userObj = new User;
 $res = $userObj->saveUser($data,$id); 
-
+print_r($res);
 if($res){
 	echo json_encode(['status'=>'ok']);
 	session_start();

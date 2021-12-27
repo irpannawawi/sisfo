@@ -38,6 +38,7 @@
             use Lib\Database\User;
             $usersObj = new User;
             $users = $usersObj->getUsers();
+
             ?>
             <!-- get list data Jabatan -->
             <table class="table table-striped table-bordered datatables-responsive" id="table">
@@ -233,7 +234,6 @@
     $("[name*='inputNip']").val(nip)
     $("[name*='inputNamaLengkap']").val(namaLengkap)
     if (jenisKelamin=='l') {
-      alert(jenisKelamin)
       $("#radioL").attr('checked',true)
     }else{
       $("#radioP").attr('checked',true)

@@ -99,7 +99,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="<?=BASE_URL?>/admin/penggajian" class="nav-link">
               <i class="nav-icon fas fa-money-bill-alt"></i>
               <p>
                 Data Penggajian
@@ -107,7 +107,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="<?=BASE_URL?>/admin/mutasi" class="nav-link">
               <i class="nav-icon fas fa-chart-line"></i>
               <p>
                 Data Mutasi

@@ -1,0 +1,30 @@
+<?php require_once '../../lib/autoload.php';
+use Lib\Database\Mutasi;
+$mutasiObj = new Mutasi;
+$nip 				= $_POST['nip'];
+				$pangkat 			= $_POST['pangkat'];
+				$bln 				= $_POST['bulan'];
+				$thn 				= $_POST['tahun'];
+				$tmt_pangkat 		= $thn."-".$bln."-1";
+				$gajix 				= $_POST['gaji'];
+				$gaji 				= str_replace(".", "", $gajix);
+				$tmt_gaji 			= $_POST['tmt_gaji'];
+				$tmt_gaji 			= explode('-',$tmt_gaji);
+				$tmt_gaji			= array_reverse($tmt_gaji);
+				$tmt_gaji			= implode('-',$tmt_gaji);
+				$pensiun 			= $_POST['pensiun'];
+				$tmt_pensiun 		= $_POST['tmt_pensiun'];
+				$tmt_pensiun 			= explode('-',$tmt_pensiun);
+				$tmt_pensiun			= array_reverse($tmt_pensiun);
+				$tmt_pensiun			= implode('-',$tmt_pensiun);
+				$ijasah 			= $_POST['ijasah'];
+				$tmt_ijasah 		= $_POST['tmt_ijasah'];
+				$tmt_ijasah 			= explode('-',$tmt_ijasah);
+				$tmt_ijasah			= array_reverse($tmt_ijasah);
+				$tmt_ijasah			= implode('-',$tmt_ijasah);
+$res = $mutasiObj->update($nip,$pangkat,$tmt_pangkat,$gaji,$tmt_gaji,$pensiun,$tmt_pensiun,$ijasah,$tmt_ijasah);
+if ($res) {
+	session_start();
+	$_SESSION['updateSuccess']=true;
+	header('Location:'.BASE_URL.'/admin/mutasi');
+}

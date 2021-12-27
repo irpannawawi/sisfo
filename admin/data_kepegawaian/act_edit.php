@@ -20,8 +20,14 @@ $pegawaiObj = new Pegawai;
 				$sk_terakhir 	= $_POST['sk_terakhir'];
 				$pangkat 		= $_POST['pangkat'];
 				$tmt_golongan	= $_POST['tmt_golongan'];
+				$tmt_golongan 	= explode('-',$tmt_golongan);
+				$tmt_golongan	= array_reverse($tmt_golongan);
+				$tmt_golongan	= implode('-',$tmt_golongan);
 				$jenis 			= $_POST['jenis_pegawai'];
 				$tmt_capeg 		= $_POST['tmt_capeg'];
+				$tmt_capeg 	= explode('-',$tmt_capeg);
+				$tmt_capeg	= array_reverse($tmt_capeg);
+				$tmt_capeg	= implode('-',$tmt_capeg);
 				$status 		= $_POST['status_pegawai'];
 				$jabatan		= $_POST['jabatan'];
 				$digaji 		= $_POST['gaji'];
@@ -43,7 +49,6 @@ $pegawaiObj = new Pegawai;
 				$kabupaten 		= $_POST['kabupaten'];
 				$wa             = $_POST['wa'];
 
-				
 				// DARI MODEL
 				// MENGARAH KE METHOD DI CLASS MODEL PENDUDUK
 				$res			= $pegawaiObj->update($id,$nip,$nama,$tempat_lahir,$tgl_lahir,$gender,$agama,$kebangsaan,$jumlah_keluarga,$alamat,$sk_terakhir,$pangkat,$tmt_golongan,$jenis,$tmt_capeg,$status,$jabatan,$digaji,$gaji_pokok,$penghasilan,$masa_golongan,$masa_keseluruhan,$npwp,$rt,$rw,$desa,$kecamatan,$kabupaten,$wa);

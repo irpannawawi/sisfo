@@ -5,8 +5,10 @@ date_default_timezone_set('Asia/Jakarta');
 require_once '../../lib/autoload.php';
 
 use Lib\Database\Profil;
+use Lib\Database\Keluarga;
 use Lib\Database\Pegawai;
-$pegawaiObj = new Profil;
+$profilObj = new Profil;
+$keluargaObj = new Keluarga;
 $pegawaiObj = new Pegawai;
 $pencetak = $_POST['pencetak'];
 $nipcetak = $_POST['nip_cetak'];
@@ -14,7 +16,7 @@ $nip      = $_POST['nip'];
 
 
 
-$peg          = $pegawaiObj->getByNip();
+$peg          = $pegawaiObj->getByNip($nip);
 $data_pegawai = mysqli_fetch_array($peg);
 
 
@@ -188,10 +190,11 @@ ob_start();
       <br>
       <br>
       <?php 
-      $ttd=$pegawaiObj->getKepalaDinas();
-      $dt=mysqli_fetch_array($ttd); ?>
-      <a style="text-decoration: underline;"> <?php echo $dt['nama'];?></a><br>
-      NIP . <?php echo $dt['nip'];?>
+      $ttd = $pegawaiObj->getKepalaDinas();
+      $dt=$ttd->fetch_object();
+      ?>
+      <a style="text-decoration: underline;"> <?php echo $dt->nama;?></a><br>
+      NIP . <?php echo $dt->nip;?>
     </td>
     <td width="30%">
       <?php echo $home['kota'];?>, <?php $tgl = date('Y-m-d'); echo TanggalIndo($tgl);?>
@@ -252,7 +255,7 @@ ob_start();
                                     $nomor          =   1;
                                     
                                     // CEK DATA YANG DITERIMA
-                                    $data_keluarga = mysqli_query($koneksi,"SELECT * FROM keluarga WHERE nip ='$data_pegawai[nip]'");
+                                    $data_keluarga = $keluargaObj->getKeluarga($nip);
                                         while($row_keluarga  = mysqli_fetch_array($data_keluarga)) {
                                 ?>
                                 
@@ -300,7 +303,7 @@ ob_start();
           <?php
             // SET NOMOR URUT DATA
             $nomor          =   1;
-            $data_anak = mysqli_query($koneksi,"SELECT * FROM anak WHERE nip='$data_pegawai[nip]'");
+            $data_anak = $keluargaObj->getAnak($nip);
             // CEK DATA YANG DITERIMA
               while($row_anak  = mysqli_fetch_array($data_anak)) {
           ?>
@@ -328,7 +331,6 @@ ob_start();
 </html>
 
 <?php
-
 $html =ob_get_clean();
 
 $pdf->loadHtml($html);

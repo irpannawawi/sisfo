@@ -7,9 +7,12 @@
 <?php 
 use Lib\Database\Pegawai;
 use Lib\Database\Master;
+use Lib\Database\Gaji;
 $masterData = new Master;
 $pegawaiObj = new Pegawai;
-$pegawai = $pegawaiObj->getPegawaiById($_GET['id'])->fetch_object();
+$gajiObj = new Gaji;
+$id_pegawai = $_GET['id'];
+$pegawai = $pegawaiObj->getPegawaiById($id_pegawai)->fetch_object();
 ?>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -393,8 +396,13 @@ $pegawai = $pegawaiObj->getPegawaiById($_GET['id'])->fetch_object();
 										<td>
 											<div class="form-group">
 												<?php 
-												$sql    = $pegawaiObj->conn->query("SELECT * FROM gaji WHERE nip='$pegawai->nip' ORDER BY id DESC");
+												$sql    = $gajiObj->getGajiBersih($pegawai->nip);
+												if($sql != 0){
+
 												$row_gaji = mysqli_fetch_array($sql);
+												}else{
+													$row_gaji['gaji_bersih'] = 0;
+												}
 												?>
 												Rp. <?php echo number_format($row_gaji['gaji_bersih'],0,".",".");?>
 											</div>
@@ -588,8 +596,8 @@ $pegawai = $pegawaiObj->getPegawaiById($_GET['id'])->fetch_object();
 								</td>
 								<td   style="padding-right: 20px;">
 									<div class="form-group" id="data_1">
-										<div class="form-group input-group date" id="ex2" data-date="" data-date-format="yyyy-mm-dd">
-											<input name="tmt_golongan" value="<?php echo $pegawai->tmt_golongan;?>" class="form-control" placeholder="Masukkan Tanggal" value="<?php echo date('Y-m-d'); ?>" readonly="readonly">
+										<div class="form-group input-group date" id="ex2" >
+											<input name="tmt_golongan" value="<?php echo $pegawai->tmt_golongan;?>" class="form-control datepicker" style="z-index: 1050 !important;" placeholder="Masukkan Tanggal" >
 											<span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
 										</div>
 									</div>
@@ -721,7 +729,7 @@ $pegawai = $pegawaiObj->getPegawaiById($_GET['id'])->fetch_object();
 							</td>
 							<td   style="padding-right: 20px;">
 								<div class="form-group input-group date" id="ex2" data-date="" data-date-format="yyyy-mm-dd">
-									<input name="tmt_capeg"  class="form-control" placeholder="Masukkan Tanggal" value="<?php echo $pegawai->tmt_capeg;?>" readonly="readonly">
+									<input name="tmt_capeg" style="z-index: 1050 !important;"  class="form-control datepicker" placeholder="Masukkan Tanggal" value="<?php echo $pegawai->tmt_capeg;?>" >
 									<span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
 								</div>
 							</td>
@@ -1114,6 +1122,7 @@ $pegawai = $pegawaiObj->getPegawaiById($_GET['id'])->fetch_object();
 </div>
 <!-- /.content-wrapper -->
 
+  <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
 
 <?php include '../../theme/partial/footer.php'; ?>
 <!-- DataTables  & Plugins -->
@@ -1129,16 +1138,12 @@ $pegawai = $pegawaiObj->getPegawaiById($_GET['id'])->fetch_object();
 <script src="<?=BASE_URL?>/theme/AdminLTE/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
 <script src="<?=BASE_URL?>/theme/AdminLTE/plugins/datatables-buttons/js/buttons.print.min.js"></script>
 <script src="<?=BASE_URL?>/theme/AdminLTE/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
-<?php if (!empty($_SESSION['updateSuccess'])) { unset($_SESSION['updateSuccess'])?>
-  <script>
-    Swal.fire('Berhasil', 'Data pegawai telah dirubah', 'success');
-  </script>
-<?php }?>
+
 
 <script>
 	function switchTabs(tabName, nip){
 		if(tabName == 'dataDiri'){
-			url = '<?=BASE_URL?>'+'/admin/data_kepegawaian/data_diri.php';
+			url = '<?=BASE_URL?>'+'/admin/data_kepegawaian/data_diri_partial.php?id='+'<?=$pegawai->id?>';
 			// switch active tab 
 			$('.nav-link').removeClass('active');
 			$('#tabDataDiri').addClass('active');
@@ -1148,17 +1153,17 @@ $pegawai = $pegawaiObj->getPegawaiById($_GET['id'])->fetch_object();
 			$('.nav-link').removeClass('active');
 			$('#tabSuamiIstri').addClass('active');
 		}else if(tabName == 'dataAnak'){
-			url = '<?=BASE_URL?>'+'/admin/data_kepegawaian/data_anak.php';
+			url = '<?=BASE_URL?>'+'/admin/data_kepegawaian/data_anak.php?nip='+nip;
 			// switch active tab 
 			$('.nav-link').removeClass('active');
 			$('#tabAnak').addClass('active');
 		}else if(tabName == 'dataPenghasilan'){
-			url = '<?=BASE_URL?>'+'/admin/data_kepegawaian/data_penghasilan.php';
+			url = '<?=BASE_URL?>'+'/admin/data_kepegawaian/data_penghasilan.php?id='+'<?=$_GET['id']?>';
 			// switch active tab 
 			$('.nav-link').removeClass('active');
 			$('#tabPenghasilan').addClass('active');
 		}else if(tabName == 'dataLampiran'){
-			url = '<?=BASE_URL?>'+'/admin/data_kepegawaian/data_lampiran.php';
+			url = '<?=BASE_URL?>'+'/admin/data_kepegawaian/data_lampiran.php?id='+'<?=$_GET['id']?>';
 			// switch active tab 
 			$('.nav-link').removeClass('active');
 			$('#tabLampiran').addClass('active');
@@ -1170,3 +1175,40 @@ $pegawai = $pegawaiObj->getPegawaiById($_GET['id'])->fetch_object();
 
 	}
 </script>
+<script>
+  $( function() {
+    $( ".datepicker" ).datepicker({
+        dateFormat: 'dd-mm-yy',
+        changeMonth: true,
+        changeYear: true,
+        showButtonPanel: true,
+        yearRange: "1950:2070"
+    });
+  } );
+
+  </script>
+  <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
+<?php if (!empty($_SESSION['updateSuccess'])) { unset($_SESSION['updateSuccess'])?>
+  <script>
+    Swal.fire('Berhasil', 'Data pegawai telah dirubah', 'success');
+  </script>
+<?php }?>
+<?php if (!empty($_SESSION['insertSuccess'])) { unset($_SESSION['insertSuccess'])?>
+  <script>
+    Swal.fire('Berhasil', 'Data pegawai telah dirubah', 'success');
+  </script>
+<?php }?>
+
+<?php if (!empty($_SESSION['errorUpload'])) { unset($_SESSION['errorUpload'])?>
+  <script>
+    Swal.fire('Gagal', '<?=$_SESSION['errorMessage']?>', 'error');
+  </script>
+<?php unset($_SESSION['errorMessage']); }?>
+
+
+
+<?php if (!empty($_SESSION['tabOpen'])) { ?>
+  <script>
+   switchTabs('<?=$_SESSION['tabOpen']?>', '<?=$pegawai->nip?>');
+  </script>
+<?php unset($_SESSION['tabOpen']); } ?>

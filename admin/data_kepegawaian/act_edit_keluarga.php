@@ -1,7 +1,7 @@
 <?php require_once '../../lib/autoload.php';
 use Lib\Database\Keluarga;
-$keluargaObj = new Keluarga;
-$id_pegawai = $_POST['id_pegawai'];
+$keluargaObj 	= new Keluarga;
+$id_pegawai 	= $_POST['id_pegawai'];
 $id 			= $_POST['id'];
 $nama			= $_POST['nama'];
 $tempat_lahir 	= $_POST['tempat'];
@@ -17,6 +17,8 @@ $penghasilan	= $_POST['penghasilan'];
 $res = $keluargaObj->updateKeluarga($id,$nama,$tempat_lahir,$tgl_lahir,$nik,$pekerjaan,$tgl_perkawinan,$ke,$penghasilan);
 if($res){
 	session_start();
-	$_SESSION['updateSuccess']=true;
-	header("Location: ".BASE_URL."/admin/data_kepegawaian/detail.php?id=$id_pegawai");
+	$_SESSION['updateSuccess'] = True;
+	$_SESSION['tabOpen'] = 'dataSuamiIstri';
+	$target = BASE_URL."/admin/data_kepegawaian/detail.php?id=$id_pegawai";
+	header("Location: ".$target);
 }

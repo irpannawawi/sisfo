@@ -8,21 +8,32 @@
       crossorigin="anonymous"
     ></script>
     <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="<?=BASE_URL?>/theme/AdminLTE/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+    
     <title>Login & Daftar | SIEMEN</title>
   </head>
   <body>
     <div class="container">
       <div class="forms-container">
+        <?php 
+            session_start();
+            if(!empty($_SESSION['error'])){
+        ?>
+        <div class="alert alert-danger"><?=$_SESSION['errorMessage']?></div>
+        <?php 
+        unset($_SESSION['error']);
+        unset($_SESSION['errorMessage']);
+    }?>
         <div class="signin-signup">
-          <form action="#" class="sign-in-form">
+          <form action="../../auth/login_simen.php" method="POST" class="sign-in-form">
             <h2 class="title">Form Login</h2>
             <div class="input-field">
               <i class="fas fa-user"></i>
-              <input type="text" placeholder="Email" />
+              <input type="text" placeholder="Username" name="username" />
             </div>
             <div class="input-field">
               <i class="fas fa-lock"></i>
-              <input type="password" placeholder="Kata sandi" />
+              <input type="password" placeholder="Kata sandi" name="password" />
             </div>
             <input type="submit" value="Login" class="btn solid" />
           </form>

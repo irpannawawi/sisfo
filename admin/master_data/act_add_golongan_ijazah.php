@@ -8,5 +8,5 @@ $res = $golonganObj->saveGolonganIjazah($golongan,$keterangan);
 if ($res) {
 	header('Location: '.BASE_URL.'/admin/master_data/list_golongan_ijazah.php');
 }else{
-	print_r($golonganObj->errors);
+	print_r($golonganObj->conn->error);
 }

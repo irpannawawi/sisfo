@@ -87,8 +87,8 @@
 										<div class="home_subtitle">PORTAL APLIKASI</div>
 										<div class="home_title"><b>RS BHAYANGKARA PALEMBANG</b></div>
 										<div class="home_buttons d-flex flex-row align-items-center justify-content-start">
-											<div class="button button_1 trans_200"><a href="/loginsiemen/index.html">SEIMEN</a></div>
-											<div class="button button_2 trans_200"><a href="/logindawai/index.html">DAWAI</a></div>
+											<div class="button button_1 trans_200"><a href="theme/loginsiemen/index.php">SEIMEN</a></div>
+											<div class="button button_1 bg-primary "><a href="theme/logindawai/index.php">DAWAI</a></div>
 										</div>
 									</div>
 								</div>

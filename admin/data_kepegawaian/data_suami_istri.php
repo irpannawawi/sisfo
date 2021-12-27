@@ -6,9 +6,15 @@ $keluargaObj = new Keluarga;
 
 use Lib\Database\Pegawai; 
 $pegawaiObj = new Pegawai; 
+$pegawai = $pegawaiObj->getPegawai()->fetch_object();
 ?>
 
 <!-- INI BAGIAN TABEL -->
+<div class="row">
+  <div class="col-12">
+    <button type="button" class="btn btn-warning btn-xs float-right mb-3" data-toggle="modal" data-target="#modal-add"><li class="fa fa-plus"></li> Add</button>
+  </div>
+</div>
 <table width="100%" id="tabel" class="table-striped table-bordered table-hover datatable">
   <thead>
     <tr class="odd bg-gray">
@@ -74,7 +80,7 @@ $pegawaiObj = new Pegawai;
                             <div class="modal-body">
                               <input type="hidden" name="nip" value="<?php echo $row_detail['nip'];?>"></input>
                               <input type="hidden" name="id" value="<?php echo $row_keluarga['id'];?>"></input>
-                              <input type="hidden" name="id_pegawai" value="<?php echo $_GET['id'];?>"></input>
+                              <input type="hidden" name="id_pegawai" value="<?php echo $pegawai->id;?>"></input>
                               <input type="text" name="nama" id="nomor_kas" class="form-control" placeholder="Nama Istri / Suami" value="<?php echo $row_keluarga['nama'];?>" required oninvalid="this.setCustomValidity('Masukan Nama Istri / Suami')" oninput="setCustomValidity('')" autocomplete="off" style="width: 100%">
                             </div>
                           </td>
@@ -263,7 +269,7 @@ $pegawaiObj = new Pegawai;
             <!-- /.modal -->
 
 
-            <a href="index.php?controller=pegawai&method=delete_keluarga&id=<?php echo $row_keluarga['id']; ?>&nip=<?php echo $row_detail['nip'];?>" class="btn btn-danger btn-xs" role="button" data-toggle="tooltip" data-placement="top" title="Delete" onClick="return confirm('Yakin hapus?')"> <i class="fa fa-trash"></i> </a>
+            <button onclick="deleteKeluarga('<?=$row_keluarga['id'];?>')" class="btn btn-danger btn-xs" role="button" data-toggle="tooltip" data-placement="top" title="Delete" onClick="return confirm('Yakin hapus?')"> <i class="fa fa-trash"></i> </button>
           </center>
 
         </td>
@@ -278,6 +284,237 @@ $pegawaiObj = new Pegawai;
   ?>
 </tbody>
 </table>
+
+<!--Modal Untuk Tambah Data -->
+<div class="modal modal-primary fade" id="modal-add">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span></button>
+                <center><h4 class="modal-title">Tambah Data Istri/Suami</h4></center>
+              </div>
+              <form role="form" method="POST" name="kategori" action="<?=BASE_URL?>/admin/data_kepegawaian/add_keluarga.php" enctype="multipart/form-data" onsubmit="return validasi();">
+                  <table width="100%" class="modal-body">
+                  <tr>
+                  <td>
+                    <div class="modal-body">
+                      <label>Nama Istri / Suami</label>
+                    </div>
+                  </td>
+                  <td>
+                      <div class="modal-body">
+                      :
+                    </div>
+                  </td>
+                  <td>
+                    <div class="modal-body">
+                    <input type="hidden" name="nip" value="<?php echo $pegawai->nip;?>"></input>
+                    <input type="hidden" name="id_pegawai" value="<?php echo $pegawai->id;?>"></input>
+                      <input type="text" name="nama" id="nomor_kas" class="form-control" placeholder="Nama Istri / Suami" required oninvalid="this.setCustomValidity('Masukan Nama Istri / Suami')" oninput="setCustomValidity('')" autocomplete="off">
+                    </div>
+                  </td>
+                  <td></td>
+                  <td>
+                    <div class="modal-body">
+                      <label>Pekerjaan</label>
+                    </div>
+                  </td>
+                  <td>
+                      <div class="modal-body">
+                      :
+                    </div>
+                  </td>
+                  <td>
+                    <div class="modal-body">
+                      <input type="text" name="pekerjaan" id="nomor_kas" class="form-control" placeholder="Pekerjaan" required oninvalid="this.setCustomValidity('Masukan Pekerjaan')" oninput="setCustomValidity('')" autocomplete="off">
+                    </div>
+                  </td>
+                  </tr>
+                  <!-- 2 -->
+                  <tr>
+                  <td>
+                    <div class="modal-body">
+                      <label>Tempat Lahir</label>
+                    </div>
+                  </td>
+                  <td>
+                      <div class="modal-body">
+                      :
+                    </div>
+                  </td>
+                  <td>
+                    <div class="modal-body">
+                      <input type="text" name="tempat" id="nomor_kas" class="form-control" placeholder="Tempat Lahir" required oninvalid="this.setCustomValidity('Masukan Tempat Lahir')" oninput="setCustomValidity('')" autocomplete="off">
+                    </div>
+                  </td>
+                  <td></td>
+                  <td>
+                    <div class="modal-body">
+                      <label>Tanggal Pekawinan</label>
+                    </div>
+                  </td>
+                  <td>
+                      <div class="modal-body">
+                      :
+                    </div>
+                  </td>
+                  <td>
+                    <div class="modal-body">
+                      <div class="form-group input-group date" id="ex2">
+                        <input name="tgl_perkawinan" style="z-index: 1050 !important;"  class="form-control datepicker" placeholder="Masukkan Tanggal" autocomplete="off">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                    </div>
+                    </div>
+                  </td>
+                  </tr>
+                  <!--3-->
+                  <tr>
+                  <td>
+                    <div class="modal-body">
+                      <label>Tanggal Lahir</label>
+                    </div>
+                  </td>
+                  <td>
+                      <div class="modal-body">
+                      :
+                    </div>
+                  </td>
+                  <td>
+                    <div class="modal-body">
+                      <table width="100%">
+                                    <td width="15%">
+                                      <select name="hari" style="color: black;" class="form-control select2">
+                                        <?php for($hari=1;$hari<=31;$hari++)
+                                          {
+                                        ?> <option value="<?php echo $hari;?>"><?php echo $hari;?></option>
+                                        <?php
+                                        }?>
+                                      </select>
+                                    </td>
+                                    <td width="20%" style="padding-left: 5px;">
+                                      <select name="bulan" style="color: black;" class="form-control select2">
+                                        <?php 
+                                        $namabulan=array("Januari", "Februari", "Maret", "April", "Mei", "juni", "juli", "Agustus", "September", "Oktober", "November", "Desember");
+                                        ?>
+                                        <?php for($bulan=1;$bulan<=12;$bulan++)
+                                          {
+                                        ?>
+                                        <option value="<?php echo $bulan;?>"><?php echo $namabulan[$bulan-1];?></option>
+                                        <?php
+                                        } ?>
+                                      </select>
+                                    </td>
+                                    <td width="20%"  style="padding-left: 5px;">
+                                      <select name="tahun" style="color: black;" class="form-control select2">
+                                        <?php for($tahun=date('Y'); $tahun>=1900; $tahun--)
+                                        {
+                                        ?>
+                                        <option value="<?php echo $tahun;?>"><?php echo $tahun;?></option>
+                                        <?php } ?>
+                                      </select>
+                                    </td>
+                                    </table>
+                    </div>
+                  </td>
+                  <td></td>
+                  <td>
+                    <div class="modal-body">
+                      <label>Istri / Suami Ke</label>
+                    </div>
+                  </td>
+                  <td>
+                      <div class="modal-body">
+                      :
+                    </div>
+                  </td>
+                  <td>
+                    <div class="modal-body">
+                      <input type="text" name="ke" id="nomor_kas" class="form-control" placeholder="Istri / Suami Ke" required oninvalid="this.setCustomValidity('Masukan Istri / Suami ke')" oninput="setCustomValidity('')" onkeypress="return angka(event);" autocomplete="off">
+                    </div>
+                  </td>
+                  </tr>
+                  <!-- 4 -->
+                  <tr>
+                  <td>
+                    <div class="modal-body">
+                      <label>Nip / Nik</label>
+                    </div>
+                  </td>
+                  <td>
+                      <div class="modal-body">
+                      :
+                    </div>
+                  </td>
+                  <td>
+                    <div class="modal-body">
+                      <input type="text" name="nik" id="nomor_kas" class="form-control" placeholder="Nip / Nik" onkeypress="return angka(event);" autocomplete="off">
+                    </div>
+                  </td>
+                  <td></td>
+                  <td>
+                    <div class="modal-body">
+                      <label>Penghasilan / Bulan</label>
+                    </div>
+                  </td>
+                  <td>
+                      <div class="modal-body">
+                      :
+                    </div>
+                  </td>
+                  <td>
+                    <div class="modal-body">
+                      <input type="text" name="penghasilan" id="nomor_kas" class="form-control" placeholder="Penghasilan" value="0" min="0" onkeypress="return angka(event);" autocomplete="off">
+                    </div>
+                  </td>
+                  </tr>
+                  </table>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
+                <input id="button" type="submit" name="submit" class="btn btn-outline btn-xl"  value="Simpan" data-toggle="tooltip" data-placement="top" title="Simpan">
+              </div>
+          </form>
+                       
+            </div>
+            <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
+        </div>
+        <!-- /.modal -->
+        </div>
+
 <script>
   $('#tabel').dataTable();
+
+  function deleteKeluarga(id)
+  {
+    Swal.fire({
+      title: 'Do you want to Delete the data?',
+      showDenyButton: true,
+      denyButtonText: 'Batal',
+    }).then((result) => {
+      if(result.isConfirmed){
+        url = '<?=BASE_URL?>/admin/data_kepegawaian/delete.php';
+        $.get(url,{id:id}, function(data){
+          data = JSON.parse(data);
+          if (data.status == 'ok'){
+            switchTabs('dataSuamiIstri','<?=$pegawai->nip?>')
+          }
+        })
+      }
+    })
+  }
 </script>
+<script>
+  $( function() {
+    $( ".datepicker" ).datepicker({
+        dateFormat: 'dd-mm-yy',
+        defaultDate: '01-01-2000',
+        changeMonth: true,
+        changeYear: true,
+        showButtonPanel: true,
+        yearRange: "1950:2015"
+    });
+  } );
+
+  </script>
