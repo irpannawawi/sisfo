@@ -15,6 +15,11 @@ class User extends Db{
 			$this->conn->query("SELECT * FROM user WHERE username='$username'");
 	}
 
+	public function getById($id){
+		return 
+			$this->conn->query("SELECT * FROM user WHERE id='$id'");
+	}
+
 	public function deleteUser($id){
 		$query = "DELETE FROM user WHERE id='$id'";
 		return $this->conn->query($query);

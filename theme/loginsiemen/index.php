@@ -15,18 +15,18 @@
   <body>
     <div class="container">
       <div class="forms-container">
-        <?php 
-            session_start();
-            if(!empty($_SESSION['error'])){
-        ?>
-        <div class="alert alert-danger"><?=$_SESSION['errorMessage']?></div>
-        <?php 
-        unset($_SESSION['error']);
-        unset($_SESSION['errorMessage']);
-    }?>
         <div class="signin-signup">
           <form action="../../auth/login_simen.php" method="POST" class="sign-in-form">
             <h2 class="title">Form Login</h2>
+            <?php 
+            session_start();
+            if(!empty($_SESSION['error'])){
+        ?>
+        <p style="color: red;"><?=$_SESSION['errorMessage']?></p>
+        <?php 
+            unset($_SESSION['errorMessage']);
+            unset($_SESSION['error']);
+        }?>
             <div class="input-field">
               <i class="fas fa-user"></i>
               <input type="text" placeholder="Username" name="username" />

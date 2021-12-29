@@ -8,7 +8,8 @@ $password = $_POST['password'];
 if (empty($username) OR empty($password)) {
 	$error = true;
 $_SESSION['error'] = true;
-header('location: ../theme/loginsiemen');
+$_SESSION['errorMessage'] = "user tidak ditemukan";
+
 }else{
 
 	$userObj = new User();
@@ -21,27 +22,28 @@ header('location: ../theme/loginsiemen');
 			$_SESSION['username'] = $userData->username;
 			$_SESSION['nama'] = $userData->nama;
 			$_SESSION['nip'] = $userData->nip;
+			$_SESSION['user_id'] = $userData->id;
 			$_SESSION['level'] = $userData->level;
 			$_SESSION['foto'] = $userData->foto;
 			if($_SESSION['level'] == 'User'){
-				header('location: ../pegawai/profile.php');
+				header('location: ../pegawai/profile.php');die;
 			}else{
 				$_SESSION['error'] = true;
-				echo $_SESSION['errorMessage'] = "Level bukan user";
-				// header('location: ../theme/loginsiemen');
+				$_SESSION['errorMessage'] = "Level bukan user";
 			}
-			die;
 		}else{
 			$error = true;
 			$_SESSION['error'] = true;
-			echo $_SESSION['errorMessage'] = "password salah";
+			$_SESSION['errorMessage'] = "password salah";
 			// header('location: ../theme/loginsiemen');
 		}
 	}else{
 		$error = true;
 			$_SESSION['error'] = true;
-			echo $_SESSION['errorMessage'] = "user tidak ditemukan";
+			$_SESSION['errorMessage'] = "user tidak ditemukan";
 			// header('location: ../theme/loginsiemen');
 	}
 
 }
+
+				header('location: ../theme/loginsiemen');
