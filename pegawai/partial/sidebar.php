@@ -38,17 +38,17 @@
           
           <li class="nav-item">
             <a href="<?=BASE_URL?>/pegawai/profile.php" class="nav-link">
-              <i class="nav-icon fas fa-street-view"></i>
+              <i class="nav-icon fas fa-user"></i>
               <p>
                 Profil
               </p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="<?=BASE_URL?>/pegawai/penggajian" class="nav-link">
-              <i class="nav-icon fas fa-money-bill-alt"></i>
+            <a href="<?=BASE_URL?>/pegawai/data_kepegawaian/detail.php?nip=<?=$_SESSION['nip']?>" class="nav-link">
+              <i class="nav-icon fas fa-street-view"></i>
               <p>
-                Gaji
+                Data diri lengkap
               </p>
             </a>
           </li>
@@ -61,10 +61,10 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="<?=BASE_URL?>/pegawai/absensi" class="nav-link">
-              <i class="nav-icon fa fa-file"></i>
+            <a href="<?=BASE_URL?>/pegawai/absensi/list_cuti.php" class="nav-link">
+              <i class="nav-icon fas fa-calendar"></i>
               <p>
-                Lampiran
+                Pengajuan Cuti
               </p>
             </a>
           </li>

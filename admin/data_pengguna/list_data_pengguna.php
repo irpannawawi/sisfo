@@ -198,6 +198,7 @@
           <label for="">Level</label>
           <select id="inputLevel" class="form-control">
             <option value="Admin">Admin</option>
+            <option value="Bendahara">Bendahara</option>
             <option value="User">User</option>
           </select>
         </div>

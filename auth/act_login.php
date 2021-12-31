@@ -21,9 +21,10 @@ if (empty($username) OR empty($password)) {
 			$_SESSION['username'] = $userData->username;
 			$_SESSION['nama'] = $userData->nama;
 			$_SESSION['nip'] = $userData->nip;
+			$_SESSION['user_id'] = $userData->id;
 			$_SESSION['level'] = $userData->level;
 			$_SESSION['foto'] = $userData->foto;
-			if($_SESSION['level'] == 'Admin'){
+			if($_SESSION['level'] == 'Admin' OR $_SESSION['level'] == 'Bendahara' ){
 				header('location: ../admin/dashboard.php');
 			}else{
 				print_r($_SESSION['level']);
@@ -38,4 +39,4 @@ if (empty($username) OR empty($password)) {
 
 }
 
-header('location: ../login.php?error=1');
+header('location: ../admin/?error=1');

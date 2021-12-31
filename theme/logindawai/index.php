@@ -14,15 +14,24 @@
     <div class="container">
       <div class="forms-container">
         <div class="signin-signup">
-          <form action="#" class="sign-in-form">
+          <form action="../../auth/login_dawai.php" method="POST" class="sign-in-form">
             <h2 class="title">Form Login</h2>
+            <?php 
+            session_start();
+            if(!empty($_SESSION['error'])){
+        ?>
+        <p style="color: red;"><?=$_SESSION['errorMessage']?></p>
+        <?php 
+            unset($_SESSION['errorMessage']);
+            unset($_SESSION['error']);
+        }?>
             <div class="input-field">
               <i class="fas fa-user"></i>
-              <input type="text" placeholder="Email" />
+              <input type="text" placeholder="Username" name="username" />
             </div>
             <div class="input-field">
               <i class="fas fa-lock"></i>
-              <input type="password" placeholder="Kata sandi" />
+              <input type="password" placeholder="Kata sandi" name="password" />
             </div>
             <input type="submit" value="Login" class="btn solid" />
           </form>
@@ -38,8 +47,6 @@
               Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis,
               ex ratione. Aliquid!
             </p>
-            <button class="btn transparent">
-             <a href="../">Daftar Sekarang</a></button>
           </div>
           <img src="img/log.svg" class="image" alt="" />
         </div>

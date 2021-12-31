@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 24, 2021 at 03:59 PM
--- Server version: 10.4.22-MariaDB
--- PHP Version: 7.4.26
+-- Generation Time: Dec 31, 2021 at 01:30 AM
+-- Server version: 10.4.20-MariaDB
+-- PHP Version: 7.4.22
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -33,17 +33,18 @@ CREATE TABLE `absensi` (
   `tgl` date NOT NULL,
   `jam_masuk` varchar(50) NOT NULL,
   `jam_keluar` varchar(50) NOT NULL,
-  `status` enum('A','I','S','C','X') NOT NULL
+  `foto` varchar(155) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `absensi`
 --
 
-INSERT INTO `absensi` (`id`, `nip`, `tgl`, `jam_masuk`, `jam_keluar`, `status`) VALUES
-(1, '196403261987101001', '2019-01-04', '07:50', '16:46', 'A'),
-(3, '9967564568943644234', '2019-01-01', '', '', 'C'),
-(4, '9967564568943644234', '2019-01-04', '', '', 'S');
+INSERT INTO `absensi` (`id`, `nip`, `tgl`, `jam_masuk`, `jam_keluar`, `foto`) VALUES
+(1, '196403261987101001', '2019-01-04', '07:50', '16:46', ''),
+(3, '9967564568943644234', '2019-01-01', '', '', ''),
+(4, '9967564568943644234', '2019-01-04', '', '', ''),
+(5, '12356', '2021-12-31', '01:39:00', '01:42:45', '12356_61cdfcc4df59f.png');
 
 -- --------------------------------------------------------
 
@@ -72,7 +73,7 @@ CREATE TABLE `anak` (
 --
 
 INSERT INTO `anak` (`id`, `nip`, `nama`, `tempat`, `tanggal_lahir`, `status`, `ke`, `gender`, `tunjangan`, `kawin`, `bekerja`, `sekolah`, `putusan`) VALUES
-(1, '197009261997031007', 'ALFATH SHIFA GHIFARA', 'Sungailiat', '1998-09-27', 'AK', 1, 'P', 'Dapat', 'Belum', 'Tidak', 'Masih', ''),
+(1, '197009261997031007', 'ALFATH SHIFA GHIFARA', 'Sungailiat', '1998-09-27', 'AK', 10, 'P', 'Dapat', 'Belum', 'Tidak', 'Masih', ''),
 (2, '197009261997031007', 'KHANSAHATIKAH KHAIRUNNISA', 'Sungailiat', '2003-03-05', 'AK', 1, 'P', 'Dapat', 'Belum', 'Tidak', 'Masih', ''),
 (3, '197009261997031007', 'HANIF MUHAMMAD FALAH', 'Pangkalpinang', '2011-06-17', 'AK', 1, 'L', 'Dapat', 'Belum', 'Tidak', 'Masih', ''),
 (4, '197412042005012002', 'NAJWA WIHDAHANI', 'Pangkalpinang', '2020-01-01', 'AK', 1, 'P', 'Dapat', 'Belum', 'Tidak', 'Masih', ''),
@@ -92,7 +93,9 @@ INSERT INTO `anak` (`id`, `nip`, `nama`, `tempat`, `tanggal_lahir`, `status`, `k
 (18, '198505042009032008', 'ARGA ALFATIH RACHMANDA', 'Pangkalpinang', '2015-05-17', 'AK', 1, 'L', 'Dapat', 'Belum', 'Tidak', 'Masih', ''),
 (19, '197301232006041001', 'DAEMENTIVA A.S.', 'Pangkalpinang', '2006-01-25', 'AK', 1, 'P', 'Dapat', 'Belum', 'Tidak', 'Masih', ''),
 (20, '197709102007011006', 'AGUS ZHALFA FEBRIYAN', 'Pangkalpinang', '2005-02-03', 'AK', 1, 'L', 'Dapat', 'Belum', 'Tidak', 'Masih', ''),
-(21, '197709102007011006', 'ZALYKA OLIVIA', 'Pangkalpinang', '2015-03-25', 'AK', 1, 'P', 'Dapat', 'Belum', 'Tidak', 'Masih', '');
+(21, '197709102007011006', 'ZALYKA OLIVIA', 'Pangkalpinang', '2015-03-25', 'AK', 1, 'P', 'Dapat', 'Belum', 'Tidak', 'Masih', ''),
+(22, 'asdasd', 'dasdasd', 'asdsd', '2021-12-01', 'dsadsd', 1, 'asdsad', 'sadasd', 'sdsd', 'asdsd', 'asdsd', ''),
+(23, '<br />\r\n<b>Notice</b>:  Undefined property: mysqli', 'samsudin', 'bandung', '2017-01-01', 'AK', 1, 'L', 'Dapat', 'Sudah', 'Bekerja', 'Masih', '');
 
 -- --------------------------------------------------------
 
@@ -114,7 +117,56 @@ CREATE TABLE `berkas` (
 --
 
 INSERT INTO `berkas` (`id`, `nip`, `keterangan`, `tgl`, `foto`, `tipe`) VALUES
-(1, '197910072003121001', 'dasdasdasd', '2021-12-10', '1_197910072003121001_MANDIRI EKSPEDISI surat penawaran harga.pdf', 'file');
+(1, '197910072003121001', 'sdasda', '0000-00-00', '', 'file'),
+(5, '197009261997031007', 'llll', '2021-12-27', '197009261997031007_KTP SINTA L.jpg', 'file'),
+(6, '198407122009031003', 'kkllik', '2021-12-30', '198407122009031003_590300.jpg', 'file'),
+(7, '198407122009031003', 'kklliioo', '2021-12-30', '198407122009031003_p11.png', 'file'),
+(8, '12356', 'kklliikk', '2021-12-30', '12356_8c8cc134e869cc4cb1e3034f51132070.jpg', 'file');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `berkas_capeg`
+--
+
+CREATE TABLE `berkas_capeg` (
+  `id_berkas` int(11) NOT NULL,
+  `id_capeg` int(11) NOT NULL,
+  `jenis` varchar(155) NOT NULL,
+  `keterangan` text NOT NULL,
+  `berkas` varchar(155) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `berkas_capeg`
+--
+
+INSERT INTO `berkas_capeg` (`id_berkas`, `id_capeg`, `jenis`, `keterangan`, `berkas`) VALUES
+(3, 2, 'Tes Kesehatan', 'skdlkd', '2_BJU_Umum _Rikrik Haspariah_857475055.pdf'),
+(4, 2, 'Tes Kesehatan', 'sekolah dasar1', '2_STRUKTUR KEPENGURUSAN.docx');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `calon_pegawai`
+--
+
+CREATE TABLE `calon_pegawai` (
+  `id` int(11) NOT NULL,
+  `nama` varchar(155) NOT NULL,
+  `username` varchar(155) NOT NULL,
+  `wa` varchar(15) NOT NULL,
+  `password` varchar(155) NOT NULL,
+  `foto` varchar(155) NOT NULL DEFAULT 'avatar.jpg',
+  `pengajuan_berkas` varchar(18) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `calon_pegawai`
+--
+
+INSERT INTO `calon_pegawai` (`id`, `nama`, `username`, `wa`, `password`, `foto`, `pengajuan_berkas`) VALUES
+(2, 'udin sam', 'udinsamsudin', '021565121215', '$2y$10$DBJFKsxjBhGK.ZzRLF1HGe8KYTvPtKRtmeYrTe6wMZESQT1bZjebi', '2_depositphotos_247872612-stock-illustration-no-image-available-icon-vector.jpg', '1');
 
 -- --------------------------------------------------------
 
@@ -124,32 +176,26 @@ INSERT INTO `berkas` (`id`, `nip`, `keterangan`, `tgl`, `foto`, `tipe`) VALUES
 
 CREATE TABLE `cuti` (
   `id_cuti` bigint(11) NOT NULL,
-  `id_cek` int(10) NOT NULL,
-  `tgl_cuti` date NOT NULL,
   `nip` varchar(50) NOT NULL,
   `jenis_cuti` varchar(100) NOT NULL,
   `alasan` text NOT NULL,
-  `lama` int(10) NOT NULL,
-  `cek` varchar(50) NOT NULL,
   `tgl_a` date NOT NULL,
   `tgl_b` date NOT NULL,
   `nip_atasan` varchar(255) NOT NULL,
-  `status` enum('A','X','Y','P','T','B') NOT NULL,
-  `n2` int(10) NOT NULL,
-  `n1` int(10) NOT NULL,
-  `n` int(10) NOT NULL
+  `status` enum('Menunggu','Terima','Tolak') NOT NULL DEFAULT 'Menunggu'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `cuti`
 --
 
-INSERT INTO `cuti` (`id_cuti`, `id_cek`, `tgl_cuti`, `nip`, `jenis_cuti`, `alasan`, `lama`, `cek`, `tgl_a`, `tgl_b`, `nip_atasan`, `status`, `n2`, `n1`, `n`) VALUES
-(20190106011, 11, '2019-01-06', '9967564568943644234', 'Cuti Sakit', 'sfrbn', 3, 'Hari', '2019-01-07', '2019-01-09', '9967564568943644234', 'A', 0, 0, 0),
-(20190107001, 1, '2019-01-07', '9967564568943644234', 'Cuti Besar', 'ihweg', 2, 'Hari', '2019-01-15', '2019-01-23', '196403261987101001', 'A', 0, 0, 0),
-(20190112001, 1, '2019-01-12', '9967564568943644234', 'Cuti Alasan Penting', 'sfrb', 4, 'Bulan', '2019-01-25', '2019-01-28', '196403261987101001', 'Y', 0, 0, 0),
-(20190119001, 1, '2019-01-19', '9967564568943644234', 'Cuti Sakit', 'klneb', 3, 'Hari', '2019-01-21', '2019-01-22', '197403081993111002', 'B', 0, 0, 0),
-(20190119002, 2, '2019-01-19', '9967564568943644234', 'Cuti Tahunan', 'kjevb', 2, 'Hari', '2019-01-22', '2019-01-24', '196403261987101001', 'B', 0, 0, 8);
+INSERT INTO `cuti` (`id_cuti`, `nip`, `jenis_cuti`, `alasan`, `tgl_a`, `tgl_b`, `nip_atasan`, `status`) VALUES
+(20190106011, '9967564568943644234', 'Cuti Sakit', 'sfrbn', '2019-01-07', '2019-01-09', '9967564568943644234', ''),
+(20190107001, '9967564568943644234', 'Cuti Besar', 'ihweg', '2019-01-15', '2019-01-23', '196403261987101001', ''),
+(20190112001, '9967564568943644234', 'Cuti Alasan Penting', 'sfrb', '2019-01-25', '2019-01-28', '196403261987101001', ''),
+(20190119001, '9967564568943644234', 'Cuti Sakit', 'klneb', '2019-01-21', '2019-01-22', '197403081993111002', ''),
+(20190119002, '9967564568943644234', 'Cuti Tahunan', 'kjevb', '2019-01-22', '2019-01-24', '196403261987101001', ''),
+(20190119004, '12356', 'Sakit', 'sakit bos', '2021-12-31', '2021-12-31', '', 'Menunggu');
 
 -- --------------------------------------------------------
 
@@ -220,10 +266,13 @@ INSERT INTO `gaji` (`id`, `nip`, `gaji_pokok`, `tunj_istri`, `tunj_anak`, `tunj_
 (14, '197301232006041001', 3666900, 265000, 565565, 1200000, 400000, 350000, 350000, 550000, 900000, 250000, 120000, 350000, 120000, 120000, 0, 40000, 75000, 100000, 50000, 80000, 80000, 40000, 50000, 70000, 400000, '2020-10-01', 8222465),
 (15, '197709102007011006', 3565000, 265000, 450000, 1200000, 1150000, 350000, 350000, 600000, 900000, 250000, 120000, 350000, 120000, 120000, 0, 40000, 75000, 100000, 50000, 80000, 80000, 40000, 50000, 70000, 350000, '2020-10-01', 8855000),
 (16, '198407122009031003', 3021300, 265000, 565565, 1200000, 1150000, 350000, 350000, 600000, 900000, 250000, 120000, 350000, 120000, 120000, 0, 40000, 75000, 100000, 50000, 80000, 80000, 40000, 50000, 70000, 400000, '2020-10-01', 8376865),
-(17, '197009261997031007', 4295100, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10000, '2021-12-01', 4285100),
-(18, '197412042005012002', 3602400, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '2021-12-01', 0),
-(19, '197910072003121001', 3350600, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '2021-12-01', 0),
-(20, '197708142002121004', 3602400, 2345673, 343345, 321321, 321321, 1352311111, 21321, 23131, 11, 1, 1321321, 1321, 32132, 1321, 313, 0, 0, 3215, 32165231, 3213213, 1321321, 321321, 3132, 321313, 3213, '2021-12-01', 1323294084);
+(17, '197412042005012002', 3602400, 12312321, 2131, 113, 321321, 32132, 32132, 321, 13213, 3213, 21321, 2, 313, 21321, 3213, 0, 21321, 31232, 21321, 321321, 1321, 1321, 32132, 21321, 213, '2021-12-27', 15913964),
+(18, '197009261997031007', 4295100, 21321, 321, 132, 13, 213, 32, 13, 564, 54, 65, 4, 546, 46, 4, 300000, 321, 32, 132, 213, 21, 132, 21, 6546, 654, '2021-12-27', 4010356),
+(19, '197009261997031007', 4295100, 0, 0, 0, 0, 0, 0, 0, 0, 10000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '2021-02-01', 4305100),
+(20, '197009261997031007', 4295100, 10000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '2021-01-01', 4305100),
+(21, '197910072003121001', 3350600, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '2021-12-27', 3350600),
+(22, '197412042005012002', 3602400, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '2021-01-27', 3602400),
+(23, '12356', 100000, 4000000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '2021-12-30', 4100000);
 
 -- --------------------------------------------------------
 
@@ -242,7 +291,8 @@ CREATE TABLE `golongan` (
 --
 
 INSERT INTO `golongan` (`id`, `golongan`, `keterangan`) VALUES
-(0, 'sd 1', 'as');
+(1, 'sd 1', 'as'),
+(2, 'smp', 'sekolah menengah perkulian');
 
 -- --------------------------------------------------------
 
@@ -317,7 +367,8 @@ INSERT INTO `jabatan` (`id`, `nama`, `jenis`) VALUES
 (60, 'auah', 'pangkat'),
 (61, 'Pengatur Muda / IIb', 'pangkat'),
 (62, 'terang', 'pangkat'),
-(66, 'asdowq', 'pangkat');
+(66, 'asdowq', 'pangkat'),
+(75, 'KEPALA DINAS', 'jabatan');
 
 -- --------------------------------------------------------
 
@@ -362,7 +413,6 @@ CREATE TABLE `keluarga` (
 --
 
 INSERT INTO `keluarga` (`id`, `nip`, `nama`, `tempat`, `tgl_lahir`, `nik`, `pekerjaan`, `tgl_nikah`, `ke`, `penghasilan`) VALUES
-(1, '197009261997031007', 'herawati.amd', 'Sungailiat', '1970-03-04', 2147483647, 'Ibu Rumah Tangga', '1997-11-06', 1, 3000000),
 (2, '197412042005012002', 'SYAHRUROZI, A.Md', 'Pangkalpinang', '1972-08-18', 2147483647, 'Swasta', '2012-06-21', 1, 3000000),
 (3, '197910072003121001', 'raden ayu fitria miranti', 'Pangkalpinang', '1980-08-03', 2147483647, 'PNS', '2010-01-27', 1, 2900000),
 (4, '197708142002121004', 'maksi yenni darma saputri', 'Kelapa', '1970-01-01', 2147483647, 'Ibu Rumah Tangga', '2009-01-30', 1, 3000000),
@@ -372,7 +422,12 @@ INSERT INTO `keluarga` (`id`, `nip`, `nama`, `tempat`, `tgl_lahir`, `nik`, `peke
 (8, '197807132002121006', 'Dewi olivia Nilapensa Siagian', 'Pangkalpinang', '1990-01-19', 2147483647, 'Guru Swasta', '2013-12-28', 1, 3000000),
 (9, '198505042009032008', 'R.RACHMANDA GUNTUR GENI', 'Semarang', '1979-07-02', 19790701, 'PNS', '2007-10-26', 1, 5000000),
 (10, '197301232006041001', 'NOVITA INDRANUARI', 'Pangkalpinang', '1970-01-02', 2147483647, 'PNS', '2003-12-07', 1, 6000000),
-(11, '197709102007011006', 'PITI PIRAWAT', 'Belinyu', '1974-02-15', 2147483647, 'PNS', '2003-12-14', 1, 6000000);
+(11, '197709102007011006', 'PITI PIRAWAT', 'Belinyu', '1974-02-15', 2147483647, 'PNS', '2003-12-14', 1, 6000000),
+(21, '197009261997031007', 'samsudin', 'jakarta', '2002-01-16', 2147483647, 'kul', '2000-01-12', 2, 100000),
+(22, '197009261997031007', 'udin', 'adasd', '2021-01-01', 2147483647, 'asda', '2000-01-05', 5, 1000000000),
+(26, '197009261997031007', 'jjkklik', 'llkij', '2021-01-01', 776676, 'klkjlk', '2000-01-11', 99, 99999),
+(27, '198407122009031003', 'adsd', 'dasd', '2021-01-01', 123, 'asdasd', '2000-01-03', 10, 111111),
+(29, '12356', 'user istri', 'jakarta', '1978-01-01', 112233, 'kuli', '2000-01-18', 3, 3000000);
 
 -- --------------------------------------------------------
 
@@ -400,12 +455,12 @@ INSERT INTO `mutasi` (`nip`, `kenaikan_pangkat`, `tmt_kenaikan`, `kenaikan_gaji`
 ('196403261987101001', 'Penata Muda Tk I / IIIb', '2020-10-01', 65748390, '2020-11-19', '60', '2020-11-18', 'GOL I A', '2019-01-17'),
 ('196905081995032004', '', '0000-00-00', 0, '0000-00-00', '', '0000-00-00', '', '0000-00-00'),
 ('19700926 199703 1 007', '', '0000-00-00', 0, '0000-00-00', '', '0000-00-00', '', '0000-00-00'),
-('197009261997031007', 'auah', '2026-10-01', 5500000, '2020-10-13', '1', '2022-06-22', 'sd 1', '2005-05-10'),
+('197009261997031007', 'Pengatur Muda / IIb', '2026-10-01', 5500000, '2021-12-29', '2000000', '2021-12-30', 'smp', '2021-12-31'),
 ('197301232006041001', '', '0000-00-00', 0, '0000-00-00', '', '0000-00-00', '', '0000-00-00'),
 ('197403081993111002', 'Pengatur Muda / IIa', '2020-10-01', 543874, '2020-09-07', '60', '2019-01-01', 'GOL I A', '2019-01-03'),
 ('197405142007011031', '', '0000-00-00', 0, '0000-00-00', '', '0000-00-00', '', '0000-00-00'),
 ('19741204 200501 2 002', '', '0000-00-00', 0, '0000-00-00', '', '0000-00-00', '', '0000-00-00'),
-('197412042005012002', 'Penata Muda / IIIa', '2021-04-01', 1111, '2021-12-24', '2222', '2021-12-23', 'sd 1', '0000-00-00'),
+('197412042005012002', 'Penata Muda / IIIa', '2021-04-01', 1111, '0000-00-00', '2222', '0000-00-00', 'sd 1', '2021-12-29'),
 ('197708142002121004', '', '0000-00-00', 0, '0000-00-00', '', '0000-00-00', '', '0000-00-00'),
 ('197709102007011006', '', '0000-00-00', 0, '0000-00-00', '', '0000-00-00', '', '0000-00-00'),
 ('197807132002121006', '', '0000-00-00', 0, '0000-00-00', '', '0000-00-00', '', '0000-00-00'),
@@ -473,8 +528,11 @@ INSERT INTO `pegawai` (`id`, `nip`, `nama`, `tempat_lahir`, `tgl_lahir`, `gender
 (14, '198505042009032008', 'Fianda Revina WidyastutiI, SKM, M.Si', 'Lampur', '1985-05-04', 'p', 'Islam', 'WNI', 5, 'MELATI GG. DAHLIA VII NO.470 RT. 03 RW. 001 KODE POS. 33123', 'Kenaikan Pengkat', 'Penata / IIIc', '2018-10-01', 'Pegawai Negeri Sipil', '2009-03-01', 'Aktif', 'Kasi Peningkatan Kapasitas Lingkungan Hidup', 'PP No 30 Tahun 2015', 3021300, 0, '02 Tahun 00 Bulan', '09 Tahun 07 Bulan', '	79.030.385.3-304.000', '003', '001', 'Bukit Merapin', 'Gerunggang', 'Pangkalpinang', '08122573163'),
 (15, '197301232006041001', 'Arry Imam Sulistio , SE., MM', 'Belinyu', '1973-01-23', 'l', 'Islam', 'WNI', 3, 'NANAS  RT. 07 RW. 03 KODE POS. -', 'Kenaikan Pengkat', 'Penata Tk I / IIId', '2019-10-01', 'Pegawai Negeri Sipil', '2006-04-01', 'Aktif', 'Kasubbag Perencaan', 'PP No 30 Tahun 2015', 3666900, 0, '01 Tahun 00 Bulan', '13 Tahun 06 Bulan', '14-856.050.1-304.000', '07', '03', 'Gajah Mada', 'Rangkui', 'Pangkalpinang', '081373016201'),
 (16, '197709102007011006', 'Henry Rizal, SE., MM', 'Pangkalpinang', '1977-09-10', 'l', 'Islam', 'WNI', 4, 'KP.MELAYU 23  RT. 01 RW. 01 KODE POS. -', 'Kenaikan Pengkat', 'Penata Tk I / IIId', '2018-10-01', 'Pegawai Negeri Sipil', '2007-01-01', 'Aktif', 'Kasubbag Keuangan', 'PP No 30 Tahun 2015', 3565000, 0, '02 Tahun 00 Bulan', '12 Tahun 06 Bulan', '15.081.361.6-304.000', '01', '01', 'Bukit Merapin', 'Gerunggang', 'Pangkalpinang', '085369350717'),
-(17, '198407122009031003', 'HARFIYANTO, ST', 'Bangka', '1984-07-12', 'l', 'Islam', 'WNI', 4, 'JL.GEGADING NO. 58 RT. 07 RW. 02 KODE POS. 33136', 'Kenaikan Gaji Berkala', 'Penata / IIIc', '2020-10-01', 'Pegawai Negeri Sipil', '2020-10-01', 'Aktif', 'Kasi Kajian dampak Lingkungan', 'PP No 30 Tahun 2015', 3021300, 0, '02 Tahun 06 Bulan', '10 Tahun 03 Bulan', '	15.081.115.6-304.000', '07', '02', 'Melintang', 'Rangkui', 'Pangkalpinang', '082176503335'),
-(18, '123', 'udin', 'Ciamis', '2004-02-18', 'l', 'Islam', 'WNI', 2, 'Cacaban', 'Kenaikan Gaji Berkala', 'Pembina Utama Madya / IVd', '0000-00-00', 'honorer', '0000-00-00', ' ', 'Pengawas Lingkungan Hidup Pertama', 'PP No 30 Tahun 2015', 8000000, 0, '1', '2 tahun', '123.123123.213.2312.3', '10', '09', 'paraknd', 'sdfsdf', 'Ciamis', '+6285659503191');
+(17, '198407122009031003', 'HARFIYANTO, ST', 'Bangka', '1984-07-12', 'l', 'Islam', 'WNI', 4, 'JL.GEGADING NO. 58 RT. 07 RW. 02 KODE POS. 33136', 'Kenaikan Gaji Berkala', 'Penata Muda Tk I / IIIb', '0000-00-00', 'honorer', '0000-00-00', 'Aktif', 'Kasi Kajian dampak Lingkungan', 'PP No 30 Tahun 2015', 3021300, 8376865, '02 Tahun 06 Bulan', '10 Tahun 03 Bulan', '	15.081.115.6-304.000', '07', '02', 'Melintang', 'Rangkui', 'Pangkalpinang', '082176503335'),
+(18, '123456', 'udin', 'Ciamis', '2004-02-18', 'l', 'Islam', 'WNI', 2, 'Cacaban', 'Kenaikan Gaji Berkala', 'Pembina Utama Madya / IVd', '2021-12-27', 'honorer', '2021-12-26', 'Aktif', 'Pengawas Lingkungan Hidup Pertama', 'PP No 30 Tahun 2015', 8000000, 0, '1', '2 tahun', '123.123123.213.2312.3', '10', '09', 'paraknd', 'sdfsdf', 'Ciamis', '+6285659503191'),
+(19, '123123213213', 'Furqon', 'Ciamis', '1980-02-20', 'l', 'Islam', 'WNI', 1, 'Cacaban', 'Kenaikan Gaji Berkala', 'Penata Muda / IIIa', '2021-12-27', 'honorer', '2021-12-26', 'Aktif', 'KEPALA DINAS', 'PP No 30 Tahun 2015', 1000000, 0, '50', '100', '212313231321', '10', '09', 'paraknd', 'sdfsdf', 'Ciamis', '021565121215'),
+(20, '12356', 'user satu satunya', 'Ciamis', '2006-02-14', 'l', 'Islam', 'WNI', 10, 'Cacaban', 'Kenaikan Pengkat', 'Penata Muda Tk I / IIIb', '0000-00-00', 'honorer', '0000-00-00', 'Aktif', 'Kepala Bidang Tata Lingkungan', 'PP No 30 Tahun 2015', 100000, 0, '10', '10', '11990990901109', '10', '09', 'paraknd', 'sdfsdf', 'Ciamis', '021565121215'),
+(21, '1122334445566', 'bendahara', 'Ciamis', '1999-02-16', 'p', 'Islam', 'WNI', 4, 'Cacaban', 'Kenaikan Pengkat', 'Penata Muda Tk I / IIIb', '0000-00-00', ' ', '0000-00-00', 'Aktif', 'Bendahara', 'PP No 30 Tahun 2015', 8000000, 0, '1', '2', '', '10', '09', 'paraknd', 'sdfsdf', 'Ciamis', '+6285659503191');
 
 -- --------------------------------------------------------
 
@@ -513,7 +571,7 @@ CREATE TABLE `profil` (
 --
 
 INSERT INTO `profil` (`id`, `nama`, `instansi`, `provinsi`, `kota`, `alamat`, `logo`, `bg`, `fb`, `twitter`, `ig`) VALUES
-(1, ' (SEPAKAT BERKAWAN)', 'DLH Provinsi Kep Bangka Belitung', 'Kepulauan Bangka Belitung', 'Kota Pangkalpinang', 'Dinas Lingkungan Hidup - Jalan Air Itam Komplek Perkantoran Gubernur Kepulauan Bangka Belitung', '2_ikon_Sertifikat Vaksin 2 - SYIFA MUTHIA YASMEEN.jpg', '', 'Dinas-Lingkungan-Hidup-Provinsi-Kepulauan-Bangka-Belitung-1376564909127317', 'dlhprovbabel', 'dinaslingkunganhidupbabel/');
+(1, ' (SEPAKAT BERKAWiN)', 'DLH Provinsi Kep Bangka Belitung', 'Kepulauan Bangka Belitung', 'Kota Pangkalpinang', 'Dinas Lingkungan Hidup - Jalan Air Itam Komplek Perkantoran Gubernur Kepulauan Bangka Belitung', 'logo.jpg', '', 'Nama fb ya', 'dlhprovbabel', 'akun ig');
 
 -- --------------------------------------------------------
 
@@ -614,10 +672,12 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `username`, `nip`, `password`, `nama`, `level`, `gender`, `foto`, `status`) VALUES
-(1, 'dora', '19741204 200501 2 002', '$2y$10$Vv4HFd0Y5mQ6merAeOsdzOSPgqcWPTIBAyw70R0NzThUnxUmF.GzW', 'Dora Wardani', 'Admin', 'p', 'dora_IMG-20181015-WA0063.jpg', 'Aktif'),
+(1, 'dora', '19741204 200501 2 002', '$2y$10$1VHDu51A5PDGKJmIgjSkLOgiEaJJ3AVKpQjuOg2ThXTa/6x.dGyEG', 'Dora Wardani n', 'Admin', 'p', '19741204 200501 2 002_590300.jpg', 'Aktif'),
 (2, 'megaoktarian', '197910072003121001', '$2y$10$S80vOgZgxyqUSVuaVL48sOzv.wCBI/acnNuXNXpvLve.v/uic1pau', 'Mega Oktarian, S.SI, M.Eng', 'User', 'l', 'megaoktarian_Mega Oktarian.jpg', 'Aktif'),
-(3, 'robialakbar', '199403242015021001', '$2y$05$C2q8dTcpUZWPVcUi.Fs8ue47cNpYbv.sQdaq0b5gJUUXOkrfQxH.u', 'robi al akbar', 'Admin', 'l', 'robialakbar_Untitled.png', 'Aktif'),
-(16, 'admin', 'admin', '$2y$10$UCbt706WCocNJYuPEJX/fupZtWAVklT5sGXF4WdGY1HIZxLemzz5y', 'admin', 'admin', 'l', 'avatar.jpg', 'Aktif');
+(3, 'robialakbar', '199403242015021001', '$2y$05$C2q8dTcpUZWPVcUi.Fs8ue47cNpYbv.sQdaq0b5gJUUXOkrfQxH.u', 'robi al akbar', 'user', 'l', 'robialakbar_Untitled.png', 'Aktif'),
+(16, 'admin', 'admin', '$2y$10$UCbt706WCocNJYuPEJX/fupZtWAVklT5sGXF4WdGY1HIZxLemzz5y', 'admin', 'admin', 'l', 'admin_depositphotos_402714028-stock-illustration-cute-character-wearing-indonesian-senior.jpg', 'Aktif'),
+(17, 'user01', '12356', '$2y$10$JrctXHte0pLxorhBWqSGkOAIhQkMFlwBVyTwuACOgw9Yb.Cnl/wpe', 'user satu satunya', 'User', 'l', '12356_images.jpg', 'Aktif'),
+(19, 'bendahara', '1122334445566', '$2y$10$Nc/NCOaUKZwT8S1mcoPHmehg8oqKwOwvvW3Rk1UYqin2qyWUkIniC', 'bendahara', 'Bendahara', 'l', 'avatar.jpg', 'Aktif');
 
 -- --------------------------------------------------------
 
@@ -657,6 +717,18 @@ ALTER TABLE `anak`
 -- Indexes for table `berkas`
 --
 ALTER TABLE `berkas`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `berkas_capeg`
+--
+ALTER TABLE `berkas_capeg`
+  ADD PRIMARY KEY (`id_berkas`);
+
+--
+-- Indexes for table `calon_pegawai`
+--
+ALTER TABLE `calon_pegawai`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -755,6 +827,8 @@ ALTER TABLE `s_kenaikan`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `username` (`username`),
+  ADD UNIQUE KEY `nip` (`nip`),
   ADD KEY `id` (`id`);
 
 --
@@ -768,22 +842,70 @@ ALTER TABLE `wa`
 --
 
 --
+-- AUTO_INCREMENT for table `absensi`
+--
+ALTER TABLE `absensi`
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `anak`
+--
+ALTER TABLE `anak`
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+
+--
+-- AUTO_INCREMENT for table `berkas`
+--
+ALTER TABLE `berkas`
+  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT for table `berkas_capeg`
+--
+ALTER TABLE `berkas_capeg`
+  MODIFY `id_berkas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `calon_pegawai`
+--
+ALTER TABLE `calon_pegawai`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `cuti`
+--
+ALTER TABLE `cuti`
+  MODIFY `id_cuti` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20190119005;
+
+--
 -- AUTO_INCREMENT for table `detail_s_ijasah`
 --
 ALTER TABLE `detail_s_ijasah`
   MODIFY `id_detail_s_ijasah` bigint(100) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `golongan`
+--
+ALTER TABLE `golongan`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `jabatan`
 --
 ALTER TABLE `jabatan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
+
+--
+-- AUTO_INCREMENT for table `keluarga`
+--
+ALTER TABLE `keluarga`
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `pegawai`
 --
 ALTER TABLE `pegawai`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `sk`
@@ -795,7 +917,7 @@ ALTER TABLE `sk`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

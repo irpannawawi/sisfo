@@ -41,7 +41,7 @@
         			</div>
         			<div class="col-12">
                 <form method="POST" action="<?=BASE_URL?>/pegawai/update_profile.php" enctype="multipart/form-data">
-                  <input type="file" hidden id="inputFoto" name="foto">
+                  <input type="file" hidden onchange="showPreview(event);" id="inputFoto" name="foto">
                   <input type="hidden" name="id" value="<?=$_SESSION['user_id']?>">
         				<table class="table">
         					<tr>
@@ -50,7 +50,7 @@
         					</tr>
         					<tr>
         						<th>Username</th>
-        						<td><input type="text" class="form-control" value="<?=$_SESSION['username']?>"></td>
+        						<td><input type="text" name="username" class="form-control" value="<?=$_SESSION['username']?>"></td>
         					</tr>
         					<tr>
         						<td colspan="2"><input type="submit" class="form-control btn-success" name="submit" value="Simpan"></td>
@@ -106,10 +106,29 @@
     $('#inputFoto').trigger('click');
   })
 
-  $('#inputFoto').on('change', function(){
-    const [file] = imgInp.files
-      if (file) {
-          blah.src = URL.createObjectURL(file)
-        }
-  })
+  function showPreview(event){
+  if(event.target.files.length > 0){
+    var src = URL.createObjectURL(event.target.files[0]);
+    var preview = document.getElementById("fotoProfil");
+    preview.src = src;
+    preview.style.display = "block";
+  }
+}
 </script>
+<?php if(!empty($_SESSION['error'])){?>
+  <script>
+    Swal.fire('Error', '<?=$_SESSION['errorMessage']?>', 'error');
+  </script>
+<?php 
+unset($_SESSION['error']);
+unset($_SESSION['errorMessage']);
+}?>
+
+<?php if(!empty($_SESSION['updateSuccess'])){?>
+  <script>
+    Swal.fire('Berhasil', '<?=$_SESSION['successMessage']?>', 'success');
+  </script>
+<?php 
+unset($_SESSION['updateSuccess']);
+unset($_SESSION['successMessage']);
+}?>

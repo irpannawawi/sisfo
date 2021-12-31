@@ -16,7 +16,7 @@
     <div class="container">
       <div class="forms-container">
         <div class="signin-signup">
-          <form action="../../auth/login_simen.php" method="POST" class="sign-in-form">
+          <form action="../../auth/login_siemen.php" method="POST" class="sign-in-form">
             <h2 class="title">Form Login</h2>
             <?php 
             session_start();
@@ -38,43 +38,23 @@
             <input type="submit" value="Login" class="btn solid" />
           </form>
 
-          <form action="#" class="sign-up-form">
+          <form action="../../capeg/register.php" method="POST" class="sign-up-form">
             <h2 class="title">Form Daftar</h2>
             <div class="input-field">
                             <i class="fas fa-user"></i>
-                                <input type="text" placeholder="Nama Lengkap">
+                                <input type="text" placeholder="Nama Lengkap" name="nama" autocomplete="off">
                         </div>
                         <div class="input-field">
                             <i class="fas fa-user"></i>
-                                <input type="text" placeholder="Username">
+                                <input type="text" placeholder="Username" name="username" autocomplete="off">
                         </div>
                         <div class="input-field">
-                            <i class="fas fa-phone"></i>
-                                <input type="text" placeholder="Telepon">
-                        </div>
-                        <div class="input-field">
-                            <i class="fas fa-calendar"></i>
-                                <input type="date" placeholder="">
-                        </div>
-                        <div class="input-field">
-                            <i class="fas fa-smile"></i>
-                                <input type="number" placeholder="Usia">
-                        </div>
-                        <div class="input-field">
-                            <i class="fas fa-user"></i>
-                                <input type="text" placeholder="KTP">
-                        </div>
-                        <div class="input-field">
-                            <i class="fas fa-envelope"></i>
-                                <input type="email" placeholder="Email">
-                        </div>
-                        <div class="input-field">
-                            <i class="fas fa-location-arrow"></i>
-                                <input type="text" placeholder="Alamat">
+                            <i class="fa fa-whatsapp"></i>
+                                <input type="text" placeholder="Whatsapp" name="wa">
                         </div>
                         <div class="input-field">
                             <i class="fas fa-lock"></i>
-                                <input type="password" placeholder="Kata sandi">
+                                <input type="password" placeholder="Kata sandi" name="password">
                         </div> 
             <input type="submit" class="btn" value="Daftar" />
           </form>
@@ -112,5 +92,13 @@
     </div>
 
     <script src="app.js"></script>
+    <?php session_start();
+    if(!empty($_SESSION['regOk'])){ ?>
+        <script>
+            alert('Registrasi berhasil silahkan Login');
+        </script>
+    <?php
+    unset($_SESSION['regOk']);
+     } //endif?>
   </body>
 </html>

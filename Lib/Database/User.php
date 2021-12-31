@@ -29,6 +29,14 @@ class User extends Db{
 		$query = "UPDATE user SET password='$new_password' WHERE username='$username'";
 		return $this->conn->query($query);  
 	}
+	public function updateFoto($id, $nama_berkas){
+		$query = "UPDATE user SET foto='$nama_berkas' WHERE id='$id'";
+		return $this->conn->query($query);  
+	}
+	public function updateUser($id, $username, $nama){
+		$query = "UPDATE user SET username='$username', nama='$nama' WHERE id='$id'";
+		return $this->conn->query($query);  
+	}
 
 	public function switcStatus($id){
 		$userdata = $this->conn->query("select * from user where id='$id'");

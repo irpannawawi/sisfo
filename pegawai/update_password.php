@@ -7,17 +7,23 @@ $confirm_new_password = $_POST['confirm_new_password'];
 
 $userObj = new User;
 $user = $userObj->getByid($_SESSION['user_id'])->fetch_object();
+
 $isError = 1;
 if (password_verify($old_password, $user->password)) {
-$isError = 0;
+	if($new_password === $confirm_new_password){
+		// do update
+		$res = $userObj->updatePassword($user->username, password_hash($new_password, PASSWORD_DEFAULT));
+		if ($res) {
+			$_SESSION['updateSuccess'] = True;
+			$_SESSION['successMessage'] = "password berhasil dirubah";
+		}
+	}else{
+		$isError =1;
+		$_SESSION['error'] = true;
+		$_SESSION['errorMessage'] = "Pasword baru tidak cocok";
+	}
 }else{
 	$_SESSION['error'] = true;
-	$_SESSION['error'] = "Pasword lama anda salah";
+	$_SESSION['errorMessage'] = "Pasword lama anda salah";
 }
-
-if($new_password === $confirm_new_password AND $isError == 0){
-	// do update
-	$res = $userObj->updatePassword($user->username, $new_password);
-}
-
 header('Location:'.BASE_URL.'/pegawai/profile.php');

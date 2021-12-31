@@ -57,7 +57,7 @@ class Pegawai extends Db{
 								kecamatan 					= '$kecamatan',
 								kabupaten 					= '$kabupaten',
 								wa                          = '$wa'
-							   WHERE id	= '$id'
+							   WHERE nip	= '$nip'
 							   ";
 		return $this->conn->query($query);
 	}
