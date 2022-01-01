@@ -1,10 +1,36 @@
-<?php include '../lib/autoload.php'; ?>
+<?php include '../lib/autoload.php'; 
+
+error_reporting(0);
+ 
+session_start();
+ 
+if (isset($_SESSION['username'])) {
+    header("Location: dashboard.php");
+}
+ 
+if (isset($_POST['submit'])) {
+    $username = $_POST['username'];
+    $password = md5($_POST['password']);
+ 
+    $sql = "SELECT * FROM user WHERE username='$username' AND password='$password'";
+    $result = mysqli_query($conn, $sql);
+    if ($result->num_rows > 0) {
+        $row = mysqli_fetch_assoc($result);
+        $_SESSION['username'] = $row['username'];
+        header("Location: dashboard.php");
+    } else {
+        echo "<script>alert('Email atau password Anda salah. Silahkan coba lagi!')</script>";
+    }
+}
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AdminLTE 3 | Log in (v2)</title>
+  <title>SIMPEG | Log in</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -24,21 +50,21 @@
     <h4 align="center">RUMAH SAKIT BHAYANGKARA PALEMBANG</h4>
   </div>
   <!-- /.login-logo -->
-  <div class="card card-outline card-primary">
-    <div class="card-body">
-      <?php if(!empty($_GET['error'])){?>
+  <div class="card">
+    <div class="card-body login-card-body">
+    <?php if(!empty($_GET['error'])){?>
       <div class="alert alert-danger alert-dismissible fade show">
         <p>Username atau password salah</p>
         <button class="close" data-dismiss="alert">&times;</button>
       </div>
       <?php } // endif ?>
-      <p class="login-box-msg">Silahkan Login</p>
+      <p class="login-box-msg">Silahkan Login !</p>
       <form action="../auth/act_login.php" method="post">
         <div class="input-group mb-3">
           <input type="text" class="form-control" name="username" placeholder="Username">
           <div class="input-group-append">
             <div class="input-group-text">
-              <span class="fas fa-user"></span>
+              <span class="fas fa-envelope"></span>
             </div>
           </div>
         </div>
@@ -52,6 +78,12 @@
         </div>
         <div class="row">
           <div class="col-8">
+            <div class="icheck-primary">
+              <input type="checkbox" id="remember">
+              <label for="remember">
+                Remember Me
+              </label>
+            </div>
           </div>
           <!-- /.col -->
           <div class="col-4">
@@ -60,15 +92,12 @@
           <!-- /.col -->
         </div>
       </form>
-
+      <br>
       <p class="mb-1">
-        <a href="forgot-password.html">I forgot my password</a>
-      </p>
-      <p class="mb-0">
-        <a href="register.html" class="text-center">Register a new membership</a>
+        <a href="<?=BASE_URL?>"><i class="fas fa-long-arrow-alt-left"></i> Kembali ke Halaman Utama</a>
       </p>
     </div>
-    <!-- /.card-body -->
+    <!-- /.login-card-body -->
   </div>
   <!-- /.card -->
 </div>
