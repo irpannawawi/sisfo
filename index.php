@@ -29,7 +29,7 @@
 
 			<!-- Logo -->
 			<div class="logo">
-				<a href="#">
+				<a href="./">
 					<div>SIM<span>PEG</span></div>
 					<div>SISTEM INFORMASI KEPEGAWAIAN</div>
 				</a>
@@ -38,11 +38,11 @@
 			<!-- Main Navigation -->
 			<nav class="main_nav">
 				<ul class="d-flex flex-row align-items-center justify-content-start">
-					<li class="active"><a href="index.html">HOME</a></li>
-					<li><a href="/loginsiemen/index.html">SEIMEN</a></li>
-					<li><a href="/logindawai/index.html">DAWAI</a></li>
-					<li><a href="contact.html">KONTAK</a></li>
-					<li><a href="about.html">TENTANG KAMI</a></li>
+					<li class="active"><a href="./">HOME</a></li>
+					<li><a href="theme/loginsiemen/index.php">SEIMEN</a></li>
+					<li><a href="theme/logindawai/index.php">DAWAI</a></li>
+					<li><a href="theme/contact.html">KONTAK</a></li>
+					<li><a href="theme/about.html">TENTANG KAMI</a></li>
 				</ul>
 			</nav>
 			<div class="header_extra d-flex flex-row align-items-center justify-content-end ml-auto">
@@ -59,11 +59,11 @@
 		<div class="menu_close_container"><div class="menu_close"><div></div><div></div></div></div>
 		<nav class="menu_nav">
 			<ul>
-				<li><a href="index.html">HOME</a></li>
-				<li><a href="about.html">SEIMEN</a></li>
-				<li><a href="services.html">DAWAI</a></li>
-				<li><a href="blog.html">KONTAK</a></li>
-				<li><a href="about.html">TENTANG</a></li>
+				<li class="active"><a href="./">HOME</a></li>
+					<li><a href="theme/loginsiemen/index.php">SEIMEN</a></li>
+					<li><a href="theme/logindawai/index.php">DAWAI</a></li>
+					<li><a href="theme/contact.html">KONTAK</a></li>
+					<li><a href="theme/about.html">TENTANG KAMI</a></li>
 			</ul>
 		</nav>
 	</div>
@@ -327,8 +327,8 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 									<li><a href="index.html">Home</a></li>
 									<li><a href="about.html">Tentang</a></li>
 									<li><a href="contact.html">Kontak</a></li>
-									<li><a href="/logindawai/index.html">Dawai</a></li>
-									<li><a href="/loginsiemen/index.html">Siemen</a></li>
+									<li><a href="theme/logindawai/index.html">Dawai</a></li>
+									<li><a href="theme/loginsiemen/index.html">Siemen</a></li>
 								</ul>
 							</nav>
 						</div>
