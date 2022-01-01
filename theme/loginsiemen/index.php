@@ -10,14 +10,14 @@
     <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="<?=BASE_URL?>/theme/AdminLTE/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
     
-    <title>Login & Daftar | SIEMEN</title>
+    <title>Login & Daftar | SEIMEN</title>
   </head>
   <body>
     <div class="container">
       <div class="forms-container">
         <div class="signin-signup">
           <form action="../../auth/login_siemen.php" method="POST" class="sign-in-form">
-            <h2 class="title">Form Login</h2>
+            <h2 class="title">Login SEIMEN</h2>
             <?php 
             session_start();
             if(!empty($_SESSION['error'])){

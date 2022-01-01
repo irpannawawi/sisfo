@@ -15,7 +15,7 @@
       <div class="forms-container">
         <div class="signin-signup">
           <form action="../../auth/login_dawai.php" method="POST" class="sign-in-form">
-            <h2 class="title">Form Login</h2>
+            <h2 class="title">Login Dawai</h2>
             <?php 
             session_start();
             if(!empty($_SESSION['error'])){
@@ -42,7 +42,7 @@
       <div class="panels-container">
         <div class="panel left-panel">
           <div class="content">
-            <h3>Baru Disini?</h3>
+            <h3>Bagaimana Rasanya?</h3>
             <p>
               Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis,
               ex ratione. Aliquid!
