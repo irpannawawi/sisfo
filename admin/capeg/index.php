@@ -10,7 +10,7 @@ use Lib\Database\Capeg;
 $berkasObj = new Berkascapeg;
 $capegObj = new Capeg;
 $id = $_SESSION['user_id'];
-$capeg = $capegObj->getCapeg();
+$capeg = $capegObj->getCapegToRivew();
 ?>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">

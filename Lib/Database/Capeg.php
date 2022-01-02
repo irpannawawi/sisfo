@@ -9,7 +9,10 @@ class Capeg extends Db{
 		$res = $this->conn->query("select * from calon_pegawai");
 		return $res;
 	}
-
+	public function getCapegToRivew(){
+		$res = $this->conn->query("select * from calon_pegawai where ");
+		return $res;
+	}
 	public function getByUsername($username){
 		return 
 			$this->conn->query("SELECT * FROM calon_pegawai WHERE username='$username'");
