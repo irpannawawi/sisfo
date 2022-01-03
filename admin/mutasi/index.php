@@ -457,7 +457,9 @@ $masterData = new Master;
                             </table>
               <div class="modal-footer">
                 <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
+                <?php if($_SESSION['level'] == "Admin"){ ?>
                 <input id="button" type="submit" name="submit" class="btn btn-outline btn-xl"  value="Simpan" data-toggle="tooltip" data-placement="top" title="Simpan">
+                        <?php } ?>
               </div>
           </form>
                        

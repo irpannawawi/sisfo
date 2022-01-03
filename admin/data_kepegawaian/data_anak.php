@@ -14,7 +14,10 @@ $pegawai = $pegawaiObj->getByNip($nip)->fetch_object();
                         <div class="panel-body table-responsive">
                         	<div class="row">
                         		<div class="col-12">
+                                    
+                        <?php if($_SESSION['level'] == "Admin"){ ?>
                         <button type="button" class="btn btn-warning btn-sm mb-3 float-right" data-toggle="modal" data-target="#modal-danger"><li class="fa fa-plus"></li> Add</button>
+                        <?php } ?>
                         		</div>
                         	</div>
                             <!-- INI BAGIAN TABEL -->
@@ -60,7 +63,9 @@ $pegawai = $pegawaiObj->getByNip($nip)->fetch_object();
                                         <td><?php echo $row_anak['putusan']; ?></td>
                                         <td><center>
 
+                        <?php if($_SESSION['level'] == "Admin"){ ?>
                                             <button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target="#ubah<?php echo $row_anak['id']; ?>"> <li class="fa fa-edit"></li> </button>
+                        <?php } ?>
                                             <!--Modal Untuk Tambah Data -->
 <div class="modal modal-success fade" id="ubah<?php echo $row_anak['id']; ?>">
           <div class="modal-dialog modal-lg">
@@ -281,7 +286,9 @@ $pegawai = $pegawaiObj->getByNip($nip)->fetch_object();
         <!-- /.modal -->
 
                                            
+                        <?php if($_SESSION['level'] == "Admin"){ ?>
                                             <a href="<?=BASE_URL?>/admin/data_kepegawaian/delete_anak.php?id=<?=$row_anak['id'];?>&id_pegawai=<?=$pegawai->id?>" class="btn btn-danger btn-xs" role="button" data-toggle="tooltip" data-placement="top" title="Delete" onClick="return confirm('Yakin hapus data anak <?php echo $row_anak['nama'];?> ?')"> <i class="fa fa-trash"></i> </a>
+                        <?php } ?>
                                             </center>
  
                                         </td>

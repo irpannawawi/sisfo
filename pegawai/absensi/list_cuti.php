@@ -62,7 +62,7 @@ $cuti = $cutiObj->getByNip($nip);
 									<td><?=$row['tgl_a']?></td>
 									<td><?=$row['tgl_b']?></td>
 									<td><?=$row['nip_atasan']?></td>
-									<td><span class="badge badge-<?=$row['status']=="Diterima"?"success":$row['status']=="Ditolak"?"danger":"info";?>"><?=$row['status']?></span></td>
+									<td><span class="badge badge-<?php if($row['status']=="Diterima"){echo "success"; }elseif($row['status']=="Tolak"){echo "danger";}else{echo "info";}?>"><?=$row['status']?></span></td>
 									<td>
 										<a class="btn btn-xs btn-danger" title="Hapus" href="<?=BASE_URL?>/pegawai/absensi/del_cuti.php?id=<?=$row['id_cuti']?>"><i class="fa fa-trash"></i></a>
 									</td>

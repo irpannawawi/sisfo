@@ -26,7 +26,9 @@ $pegawai = $pegawaiObj->getPegawaiById($id_pegawai)->fetch_object();
 		<div class="panel-body table-responsive">
 			<!-- INI BAGIAN TABEL -->
 			
+                        <?php if($_SESSION['level'] == "Admin"){ ?>
 			<button class="btn btn-sm btn-warning m-2 p-1 float-right" data-toggle="modal" data-target="#modal-danger"><li class="fa fa-edit"></li> Edit</button>
+                        <?php } ?>
 			<table width="100%" class="tabel">
 				<hr>
 				<!--baris 1-->

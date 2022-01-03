@@ -31,7 +31,12 @@
       <div class="container-fluid">
         <div class="row">
           <div class="card col">
-            <div class="card-header"><h5 class="float-left">Data Pangkat / Golongan</h5> <button class="float-right btn btn-success" data-toggle="modal" data-target="#modal-add-pangkat"><i class="fa fa-plus"></i> Tambah data</button></div>
+            <div class="card-header"><h5 class="float-left">Data Pangkat / Golongan</h5> 
+            
+                        <?php if($_SESSION['level'] == "Admin"){ ?>
+              <button class="float-right btn btn-success" data-toggle="modal" data-target="#modal-add-pangkat"><i class="fa fa-plus"></i> Tambah data</button>
+                        <?php } ?>
+            </div>
             <div class="card-body">
               <!-- get list data pangkat / golongan -->
                 <?php 
@@ -54,10 +59,12 @@
                     <td><?=$n?></td>
                     <td><?=$row['nama']?></td>
                     <td>
+                        <?php if($_SESSION['level'] == "Admin"){ ?>
                       <div class="btn-group">
                         <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#editModal" onClick="fill_edit_form('<?=$row['id']?>','<?=$row['nama']?>')"><i class="fa fa-edit"></i></button>
-                        <button class="btn btn-sm btn-danger" onclick="deleteData('<?=$row['id']?>')"><i class="fa fa-trash"></i></button></td>
+                        <button class="btn btn-sm btn-danger" onclick="deleteData('<?=$row['id']?>')"><i class="fa fa-trash"></i></button>
                       </div>
+                        <?php } ?>
                       </td>
                   </tr>
                 <?php } // endwhile ?>

@@ -10,7 +10,10 @@ $pegawai = $pegawaiObj->getPegawaiById($id_pegawai)->fetch_object();
 ?>
 <!-- INI BAGIAN ISI UTAMA -->
                         <div class="panel-body table-responsive">
+                          
+                        <?php if($_SESSION['level'] == "Admin"){ ?>
                         <button type="button" class="btn btn-warning btn-xs pull-right" data-toggle="modal" data-target="#modal-danger"><li class="fa fa-plus"></li> Add</button>
+                        <?php } ?>
                              <br>
                              <br>
                             <!-- INI BAGIAN TABEL -->
@@ -52,7 +55,9 @@ $pegawai = $pegawaiObj->getPegawaiById($id_pegawai)->fetch_object();
                                         </td>
                                         <td><center>
 
+                        <?php if($_SESSION['level'] == "Admin"){ ?>
                                             <button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target="#ubah<?php echo $row_berkas['id']; ?>"> <li class="fa fa-edit"></li> </button>
+                        <?php } ?>
 <!-- prefiew foto -->
 <div class="modal fade" id="preview<?php echo $row_berkas['id']; ?>">
           <div class=" modal-lg">
@@ -160,7 +165,9 @@ $pegawai = $pegawaiObj->getPegawaiById($id_pegawai)->fetch_object();
         <!-- /.modal -->
 
                                            
+                        <?php if($_SESSION['level'] == "Admin"){ ?>
                                             <a href="<?=BASE_URL?>/admin/data_kepegawaian/delete_berkas.php?id=<?=$row_berkas['id']?>&id_pegawai=<?=$pegawai->id?>" class="btn btn-danger btn-xs" role="button" data-toggle="tooltip" data-placement="top" title="Delete" onClick="return confirm('Yakin hapus?')"> <i class="fa fa-trash"></i> </a>
+                        <?php } ?>
                                             </center>
  
                                         </td>

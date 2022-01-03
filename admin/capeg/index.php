@@ -68,8 +68,11 @@ $capeg = $capegObj->getCapegToRivew();
 										
 									</td>
 									<td>
+										
 										<?php if(!$row['diterima']){ ?>
+                        <?php if($_SESSION['level'] == "Admin"){ ?>
 										<a title="Terima" onclick="return confirm('Terima calon Pegawai?')" class="btn btn-sm btn-primary" href="<?=BASE_URL?>/admin/capeg/terima.php?id=<?=$row['id']?>"><i class="fa fa-check"></i></a>
+                        <?php } ?>
 										<a  class="btn btn-sm btn-danger" onclick="return confirm('Tolak calon Pegawai?')" href="<?=BASE_URL?>/admin/capeg/tolak.php?id=<?=$row['id']?>"><i class="fa fa-times"></i></a>
 										<?php }else{ echo "Telah diterima"; }?>
 									</td>

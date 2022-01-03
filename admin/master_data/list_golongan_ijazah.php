@@ -31,7 +31,10 @@
       <div class="container-fluid">
         <div class="row">
           <div class="card col">
-            <div class="card-header"><h5 class="float-left">Data Golongan Ijazah</h5> <button class="float-right btn btn-success" data-toggle="modal" data-target="#modal-add-pangkat"><i class="fa fa-plus"></i> Tambah data</button></div>
+            <div class="card-header"><h5 class="float-left">Data Golongan Ijazah</h5>
+                        <?php if($_SESSION['level'] == "Admin"){ ?>
+                         <button class="float-right btn btn-success" data-toggle="modal" data-target="#modal-add-pangkat"><i class="fa fa-plus"></i> Tambah data</button></div>
+                        <?php } ?>
             <div class="card-body">
               <!-- get list data pangkat / golongan -->
                 <?php 
@@ -57,8 +60,10 @@
                     <td><?=$row['keterangan']?></td>
                     <td>
                       <div class="btn-group">
+                        <?php if($_SESSION['level'] == "Admin"){ ?>
                         <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#editModal" onClick="fill_edit_form('<?=$row['id']?>','<?=$row['golongan']?>','<?=$row['keterangan']?>')"><i class="fa fa-edit"></i></button>
                         <button class="btn btn-sm btn-danger" onclick="deleteData('<?=$row['id']?>')"><i class="fa fa-trash"></i></button></td>
+                        <?php } ?>
                       </div>
                       </td>
                   </tr>

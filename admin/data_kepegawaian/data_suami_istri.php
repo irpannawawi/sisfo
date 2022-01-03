@@ -12,7 +12,10 @@ $pegawai = $pegawaiObj->getPegawai()->fetch_object();
 <!-- INI BAGIAN TABEL -->
 <div class="row">
   <div class="col-12">
+
+                        <?php if($_SESSION['level'] == "Admin"){ ?>
     <button type="button" class="btn btn-warning btn-xs float-right mb-3" data-toggle="modal" data-target="#modal-add"><li class="fa fa-plus"></li> Add</button>
+                        <?php } ?>
   </div>
 </div>
 <table width="100%" id="tabel" class="table-striped table-bordered table-hover datatable">
@@ -53,7 +56,9 @@ $pegawai = $pegawaiObj->getPegawai()->fetch_object();
           <td align="right"><?php echo number_format($row_keluarga['penghasilan']); ?></td>
           <td><center>
 
+                        <?php if($_SESSION['level'] == "Admin"){ ?>
             <button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target="#ubah<?php echo $row_keluarga['id']; ?>"> <li class="fa fa-edit"></li> </button>
+                        <?php } ?>
             <!--Modal Untuk Tambah Data -->
             <div class="modal modal-success fade" id="ubah<?php echo $row_keluarga['id']; ?>">
               <div class="modal-dialog modal-lg">
@@ -269,7 +274,9 @@ $pegawai = $pegawaiObj->getPegawai()->fetch_object();
             <!-- /.modal -->
 
 
+            <?php if($_SESSION['level'] == "Admin"){ ?>
             <button onclick="deleteKeluarga('<?=$row_keluarga['id'];?>')" class="btn btn-danger btn-xs" role="button" data-toggle="tooltip" data-placement="top" title="Delete" onClick="return confirm('Yakin hapus?')"> <i class="fa fa-trash"></i> </button>
+              <?php } ?>
           </center>
 
         </td>

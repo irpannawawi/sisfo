@@ -200,6 +200,7 @@
             <option value="Admin">Admin</option>
             <option value="Bendahara">Bendahara</option>
             <option value="User">User</option>
+            <option value="Karumkit">Kepala Rumah Sakit</option>
           </select>
         </div>
       </div>
@@ -271,7 +272,9 @@
         inputJenisKelamin.val('')
         inputLevel.val('')
         $('#modal-add-user .close').click();
-        Swal.fire('Berhasil', 'Data berhasil ditambahkan', 'success');
+        Swal.fire('Berhasil', 'Data berhasil ditambahkan', 'success').then((result)=>{
+          window.location.href = "<?=BASE_URL?>/admin/data_pengguna/list_data_pengguna.php";
+        });
       }else{
         alert(data)
       }

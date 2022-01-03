@@ -174,7 +174,10 @@
                           <?php if ($dataGaji != false) {?>
                           <a href="<?=BASE_URL?>/admin/penggajian/info.php?nip=<?=$row['nip']?>&filter=true&bulan=<?=$bulan?>&tahun=<?=$tahun?>" class="btn btn-sm btn-info" ><i class="fa fa-info"></i> Info</a>
                     <?php }else{ ?>
+
+                        <?php if($_SESSION['level'] == "Admin" or $_SESSION['level'] == "Bendahara"){ ?>
                           <a href="<?=BASE_URL?>/admin/penggajian/insert.php?nip=<?=$row['nip']?>&filter=true&bulan=<?=$bulan?>&tahun=<?=$tahun?>" class="btn btn-sm btn-primary" ><i class="fa fa-plus"></i>Insert</a>
+                        <?php } ?>
                     <?php } ?>
                       </td>
                     </tr>

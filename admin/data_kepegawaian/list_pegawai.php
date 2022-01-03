@@ -31,7 +31,12 @@
     <div class="container-fluid">
       <div class="row">
         <div class="card col">
-          <div class="card-header"><h5 class="float-left">Data Pegawai</h5> <a href="<?=BASE_URL?>/admin/data_kepegawaian/tambah_data.php" class="float-right btn btn-success"><i class="fa fa-plus"></i> Tambah data</a></div>
+          <div class="card-header"><h5 class="float-left">Data Pegawai</h5> 
+
+                        <?php if($_SESSION['level'] == "Admin"){ ?>
+                        <a href="<?=BASE_URL?>/admin/data_kepegawaian/tambah_data.php" class="float-right btn btn-success"><i class="fa fa-plus"></i> Tambah data</a>
+                        <?php } ?>
+                      </div>
           <div class="card-body">
             <!-- get list data Jabatan -->
             <?php 
@@ -64,8 +69,12 @@
                     
                       <td>
                         <div class="btn-group">
+
                           <a href="<?=BASE_URL?>/admin/data_kepegawaian/detail.php?id=<?=$row['id']?>" class="btn btn-sm btn-info" ><i class="fa fa-info"></i></a>
-                          <button class="btn btn-sm btn-danger" ><i class="fa fa-trash"></i></button></td>
+                        <?php if($_SESSION['level'] == "Admin"){ ?>
+                          <button class="btn btn-sm btn-danger" ><i class="fa fa-trash"></i></button>
+                        <?php } ?>
+                        </td>
                         </div>
                       </td>
                     </tr>

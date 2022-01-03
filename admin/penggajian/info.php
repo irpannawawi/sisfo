@@ -107,7 +107,9 @@ $data_gaji = $gajiObj->getGajiBulanan($_GET['nip'], $bulan, $tahun);
                                 </form>
                                 </div>
                                 <div class="float-right" style="padding-right: 20px;">
+                                    <?php if($_SESSION['level'] == "Admin" or $_SESSION['level'] == "Bendahara"){ ?>
                                     <a href="<?=BASE_URL?>/admin/penggajian/edit.php?&id=<?php echo $row_gaji['id'];?>"  data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit fa-fw fa-fw"></i>Edit</a>
+                                    <?php } ?>
                                 </div>
                             </div>
                 <input name="nip" type="hidden" value="<?php echo $row_pegawai['nip'];?>"></input>
