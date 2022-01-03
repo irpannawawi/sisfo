@@ -69,6 +69,14 @@
             </a>
           </li>
           <li class="nav-item">
+            <a href="<?=BASE_URL?>/pegawai/resign" class="nav-link">
+              <i class="nav-icon fas fa-times"></i>
+              <p>
+                Pengajuan Resign
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
             <a href="<?=BASE_URL?>/auth/logout.php" class="nav-link">
               <i class="nav-icon fas fa-key"></i>
               <p>
