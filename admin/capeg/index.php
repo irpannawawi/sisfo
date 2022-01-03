@@ -68,8 +68,10 @@ $capeg = $capegObj->getCapegToRivew();
 										
 									</td>
 									<td>
-										<a title="Terima"  class="btn btn-sm btn-primary" href="<?=BASE_URL?>/capeg/berkas/delete.php?id=<?=$row['id']?>"><i class="fa fa-check"></i></a>
-										<a  class="btn btn-sm btn-danger" href="<?=BASE_URL?>/capeg/berkas/delete.php?id=<?=$row['id']?>"><i class="fa fa-times"></i></a>
+										<?php if(!$row['diterima']){ ?>
+										<a title="Terima" onclick="return confirm('Terima calon Pegawai?')" class="btn btn-sm btn-primary" href="<?=BASE_URL?>/admin/capeg/terima.php?id=<?=$row['id']?>"><i class="fa fa-check"></i></a>
+										<a  class="btn btn-sm btn-danger" onclick="return confirm('Tolak calon Pegawai?')" href="<?=BASE_URL?>/admin/capeg/tolak.php?id=<?=$row['id']?>"><i class="fa fa-times"></i></a>
+										<?php }else{ echo "Telah diterima"; }?>
 									</td>
 								</tr>
 							<?php endwhile ?>

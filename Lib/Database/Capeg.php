@@ -10,7 +10,7 @@ class Capeg extends Db{
 		return $res;
 	}
 	public function getCapegToRivew(){
-		$res = $this->conn->query("select * from calon_pegawai where ");
+		$res = $this->conn->query("select * from calon_pegawai where pengajuan_berkas=true");
 		return $res;
 	}
 	public function getByUsername($username){
@@ -40,6 +40,16 @@ class Capeg extends Db{
 	public function kirimBerkas(){
 		$id = $_SESSION['user_id'];
 		$query = "UPDATE calon_pegawai SET pengajuan_berkas='1' WHERE id='$id'";
+		return $this->conn->query($query);  
+	}
+
+	public function terimaCapeg($id){
+		$query = "UPDATE calon_pegawai SET diterima='1' WHERE id='$id'";
+		return $this->conn->query($query);  
+	}
+
+	public function tolakCapeg($id){
+		$query = "UPDATE calon_pegawai SET pengajuan_berkas='0' WHERE id='$id'";
 		return $this->conn->query($query);  
 	}
 

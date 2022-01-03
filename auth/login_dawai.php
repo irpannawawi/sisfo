@@ -17,19 +17,25 @@ $_SESSION['errorMessage'] = "user tidak ditemukan";
 	if($user->num_rows >= 1){
 		// user found
 		$userData = $user->fetch_object();
-		if(password_verify($password, $userData->password) AND $userData->status == 'Aktif'){
-			// password verified
-			$_SESSION['username'] = $userData->username;
-			$_SESSION['nama'] = $userData->nama;
-			$_SESSION['nip'] = $userData->nip;
-			$_SESSION['user_id'] = $userData->id;
-			$_SESSION['level'] = $userData->level;
-			$_SESSION['foto'] = $userData->foto;
-			if($_SESSION['level'] == 'User'){
-				header('location: ../pegawai/profile.php');die;
+		if(password_verify($password, $userData->password) ){
+				// password verified
+			if($userData->status == 'Aktif'){
+				$_SESSION['username'] = $userData->username;
+				$_SESSION['nama'] = $userData->nama;
+				$_SESSION['nip'] = $userData->nip;
+				$_SESSION['user_id'] = $userData->id;
+				$_SESSION['level'] = $userData->level;
+				$_SESSION['foto'] = $userData->foto;
+				if($_SESSION['level'] == 'User'){
+					header('location: ../pegawai/profile.php');die;
+				}else{
+					$_SESSION['error'] = true;
+					$_SESSION['errorMessage'] = "Level bukan user";
+				}
 			}else{
+				$error = true;
 				$_SESSION['error'] = true;
-				$_SESSION['errorMessage'] = "Level bukan user";
+				$_SESSION['errorMessage'] = "Anda tidak lagi diizinkan mengakses akun";	
 			}
 		}else{
 			$error = true;

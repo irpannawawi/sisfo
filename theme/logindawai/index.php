@@ -1,3 +1,4 @@
+<?php require_once '../../lib/autoload.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>

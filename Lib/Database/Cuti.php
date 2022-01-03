@@ -10,6 +10,22 @@ class Cuti extends Db{
 		$sql = "SELECT * from cuti where nip='$nip'";
 		return $this->conn->query($sql);
 	}
+	public function getPengajuanCuti(){
+
+		$sql = "SELECT cuti.*, pegawai.*  from cuti inner join pegawai on cuti.nip=pegawai.nip where cuti.status='Menunggu' or cuti.status='Terima'";
+		// 
+		return $this->conn->query($sql);
+	}
+
+	public function terimaCuti($id){
+		$sql = "UPDATE cuti SET status='Terima', nip_atasan='".$_SESSION['nip']."' WHERE id_cuti='$id'";
+		return $this->conn->query($sql);
+	}
+
+	public function tolakCuti($id){
+		$sql = "UPDATE cuti SET status='Tolak', nip_atasan='".$_SESSION['nip']."' WHERE id_cuti='$id'";
+		return $this->conn->query($sql);
+	}
 
 	public function delete($id, $nip){
 		$sql = "DELETE from cuti where nip='$nip' and id_cuti='$id'";
