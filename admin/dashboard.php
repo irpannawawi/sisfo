@@ -1,15 +1,18 @@
 <?php include '../lib/autoload.php'; ?>
 <?php include '../lib/session_checker.php'; ?>
-<?php include '../theme/partial/header.php'; ?>
-<?php include '../theme/partial/topbar.php'; ?>
-<?php include '../theme/partial/sidebar.php'; ?>
-
  <?php 
  use Lib\Database\Absensi;
  $absensiObj = new Absensi;
  $tgl = date('Y-m-d');
- $absen = getAbsensi($tgl);
+ $absensi = $absensiObj->getAbsensi($tgl);
+ if(!$absensi){
+  echo $absensiObj->conn->error;die;
+ }
  ?>
+<?php include '../theme/partial/header.php'; ?>
+<?php include '../theme/partial/topbar.php'; ?>
+<?php include '../theme/partial/sidebar.php'; ?>
+
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -33,7 +36,7 @@
     <!-- Main content -->
     <div class="content">
       <div class="container-fluid">
-        <h3>Riwayat Absensi</h3>
+        <h3>Absensi Hari ini</h3>
           <table class="table table-striped col-12" id="table">
             <thead>
               <tr>
@@ -49,10 +52,11 @@
               <?php $n=0; while ($row = $absensi->fetch_assoc() ): $n++ ?>
                 <tr>
                   <td><?=$n?></td>
+                  <td><?=$row['nama']?></td>
                   <td><?=$row['tgl']?></td>
                   <td><?=$row['jam_masuk']?></td>
                   <td><?=$row['jam_keluar']?></td>
-                  <td><?=$row['foto']?></td>
+                  <td><img src="<?=BASE_URL?>/assets/absensi/<?=$row['foto']?>" alt="" height="100" width="100"></td>
                 </tr>
               <?php endwhile ?>
             </tbody>

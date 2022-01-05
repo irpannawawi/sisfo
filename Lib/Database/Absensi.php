@@ -16,7 +16,7 @@ class Absensi extends Db{
 
 	}
 	public function getAbsensi($tgl){
-		$sql = "SELECT * FROM absensi where tgl='$tgl'";
+		$sql = "SELECT absensi.*, pegawai.* FROM absensi INNER JOIN pegawai ON absensi.nip=pegawai.nip WHERE tgl='$tgl' ";
 		return $this->conn->query($sql);
 	}
 
