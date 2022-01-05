@@ -64,7 +64,7 @@ if(!$cuti){echo $resignObj->conn->error;die;}
 										<?=!empty($pegawai->nama)?$pegawai->nama:'';?>
 									</td>
 									<td><?=$row['nip_atasan']?></td>
-									<td><span class="badge badge-<?=$row['status']=="Diterima"?"success":$row['status']=="Ditolak"?"danger":"info";?>"><?=$row['status']?></span></td>
+									<td><span class="badge badge-<?php if($row['status']=="Diterima"){echo "success"; }elseif($row['status']=="Tolak"){echo "danger";}else{echo "info";}?>"><?=$row['status']?></span></td>
 									<td>
 										<?php if($row['status']=='Menunggu'){?>
 											<div class="btn-group">
