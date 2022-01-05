@@ -15,6 +15,10 @@ class Absensi extends Db{
 		return $this->conn->query($sql);
 
 	}
+	public function getAbsensi($tgl){
+		$sql = "SELECT * FROM absensi where tgl='$tgl'";
+		return $this->conn->query($sql);
+	}
 
 	public function absenMasuk($nip, $foto){
 		$tgl = date('Y-m-d');

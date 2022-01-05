@@ -1,5 +1,5 @@
 <?php 
-$base_url = 'http://localhost/sisfo';
+$base_url = 'http://localhost/sisfo-main';
 
 function TanggalIndo($tanggal, $cetak_hari = false)
 {

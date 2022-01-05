@@ -4,7 +4,12 @@
 <?php include '../theme/partial/topbar.php'; ?>
 <?php include '../theme/partial/sidebar.php'; ?>
 
- 
+ <?php 
+ use Lib\Database\Absensi;
+ $absensiObj = new Absensi;
+ $tgl = date('Y-m-d');
+ $absen = getAbsensi($tgl);
+ ?>
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -28,7 +33,30 @@
     <!-- Main content -->
     <div class="content">
       <div class="container-fluid">
-        
+        <h3>Riwayat Absensi</h3>
+          <table class="table table-striped col-12" id="table">
+            <thead>
+              <tr>
+                <th>No</th>
+                <th>Nama</th>
+                <th>Tanggal</th>
+                <th>Jam Masuk</th>
+                <th>Jam Keluar</th>
+                <th>Selfie</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php $n=0; while ($row = $absensi->fetch_assoc() ): $n++ ?>
+                <tr>
+                  <td><?=$n?></td>
+                  <td><?=$row['tgl']?></td>
+                  <td><?=$row['jam_masuk']?></td>
+                  <td><?=$row['jam_keluar']?></td>
+                  <td><?=$row['foto']?></td>
+                </tr>
+              <?php endwhile ?>
+            </tbody>
+          </table>
       </div>
       <!-- /.container-fluid -->
     </div>
