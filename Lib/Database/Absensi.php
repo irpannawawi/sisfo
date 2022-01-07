@@ -15,6 +15,10 @@ class Absensi extends Db{
 		return $this->conn->query($sql);
 
 	}
+	public function getAbsensi($tgl){
+		$sql = "SELECT absensi.*, pegawai.* FROM absensi INNER JOIN pegawai ON absensi.nip=pegawai.nip WHERE tgl='$tgl' ";
+		return $this->conn->query($sql);
+	}
 
 	public function absenMasuk($nip, $foto){
 		$tgl = date('Y-m-d');
