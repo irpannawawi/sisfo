@@ -42,7 +42,7 @@
               </p>
             </a>
           </li>
-          <?php if($_SESSION['level']=='Admin' OR $_SESSION['level']=='Karumkit'){ ?>
+          <?php if($_SESSION['level']=='Admin' OR $_SESSION['level']=='Karumkit' OR $_SESSION['level']=='Diklit'){ ?>
             <li class="nav-item">
               <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-edit"></i>
@@ -116,8 +116,34 @@
               </p>
             </a>
           </li>
-          <?php if($_SESSION['level']=='Admin' OR $_SESSION['level']=='Karumkit'){ ?>
+          <?php if($_SESSION['level']=='Admin' OR $_SESSION['level']=='Karumkit' OR $_SESSION['level']=='Diklit'){ ?>
             <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-graduation-cap"></i>
+                <p>
+                  Pelatihan
+                </p>
+                  <i class="right fas fa-angle-left"></i>
+              </a>
+                <ul class="nav nav-treeview ml-5">
+                  <li class="nav-item">
+                    <a href="<?=BASE_URL?>/admin/Pelatihan" class="nav-link">
+                      <i class="fa fa-book"></i> 
+                      <p>
+                        Pelatihan
+                      </p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="<?=BASE_URL?>/admin/pelatihan/peserta" class="nav-link">
+                      <i class="fa fa-user-graduate"></i> 
+                      <p>
+                        Peserta
+                      </p>
+                    </a>
+                  </li>
+                </ul>
+            </li> <li class="nav-item">
               <a href="<?=BASE_URL?>/admin/cuti" class="nav-link">
                 <i class="nav-icon fas fa-calendar"></i>
                 <p>

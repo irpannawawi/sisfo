@@ -138,8 +138,11 @@
           <div class="form-group">
             <label for="">Level</label>
             <select name="inputLevel" id="inputEditLevel" class="form-control">
-              <option value="Admin">Admin</option>
-              <option value="User">User</option>
+            <option value="Admin">Admin</option>
+            <option value="Bendahara">Bendahara</option>
+            <option value="User">User</option>
+            <option value="Karumkit">Kepala Rumah Sakit</option>
+            <option value="Diklit">Diklit</option>
             </select>
           </div>
         </div>     
@@ -201,6 +204,7 @@
             <option value="Bendahara">Bendahara</option>
             <option value="User">User</option>
             <option value="Karumkit">Kepala Rumah Sakit</option>
+            <option value="Diklit">Diklit</option>
           </select>
         </div>
       </div>

@@ -9,7 +9,7 @@ class Pelatihan extends Db{
 	// CREATE PELATIHAN
 	// UPDATE PELATIHAN
 	public function savePelatihan( $nama, $id=null ){
-		if ($id===null) {
+		if ($id==null) {
 			$sql = "INSERT INTO pelatihan(nama_pelatihan) VALUES('$nama')";
 		}else{
 			$sql = "UPDATE pelatihan SET nama_pelatihan='$nama' WHERE id_pelatihan='$id'";
@@ -50,7 +50,7 @@ class Pelatihan extends Db{
 	}
 	// READ kelas
 	public function getKelasByPelatihan($id_pelatihan){
-		$sql = "SELECT * FROM kelas WHERE id_pelatihan='$id_pelatihan'";
+		$sql = "SELECT kelas.*, pegawai.* FROM kelas inner join pegawai on kelas.nip=pegawai.nip WHERE id_pelatihan='$id_pelatihan'";
 		return 
 		$this->conn->query($sql);
 	}
@@ -60,5 +60,12 @@ class Pelatihan extends Db{
 
 		return 
 			$this->conn->query($sql);
+	}
+
+	public function getAllPegawai(){
+		$sql = "SELECT pegawai.* FROM pegawai LEFT OUTER JOIN kelas ON pegawai.nip=kelas.nip WHERE kelas.nip IS NULL";
+		return 
+			$this->conn->query($sql);
+
 	}
 }

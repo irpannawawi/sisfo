@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 03, 2022 at 03:19 PM
--- Server version: 10.4.22-MariaDB
--- PHP Version: 7.4.26
+-- Generation Time: Jan 07, 2022 at 09:15 PM
+-- Server version: 10.4.20-MariaDB
+-- PHP Version: 7.4.22
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -41,11 +41,7 @@ CREATE TABLE `absensi` (
 --
 
 INSERT INTO `absensi` (`id`, `nip`, `tgl`, `jam_masuk`, `jam_keluar`, `foto`) VALUES
-(1, '196403261987101001', '2019-01-04', '07:50', '16:46', ''),
-(3, '9967564568943644234', '2019-01-01', '', '', ''),
-(4, '9967564568943644234', '2019-01-04', '', '', ''),
-(5, '12356', '2021-12-31', '01:39:00', '01:42:45', '12356_61cdfcc4df59f.png'),
-(6, '12356', '2022-01-03', '19:57:29', '19:57:39', '12356_61d2f2b991f5e.png');
+(8, '12356', '2022-01-05', '14:05:27', '', '12356_61d54337b1028.png');
 
 -- --------------------------------------------------------
 
@@ -391,6 +387,29 @@ INSERT INTO `jml_hari_rekap` (`id_jml`, `tgl`, `jml`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `kelas`
+--
+
+CREATE TABLE `kelas` (
+  `id_kelas` int(11) NOT NULL,
+  `nip` varchar(155) NOT NULL,
+  `id_pelatihan` varchar(155) NOT NULL,
+  `tanggal_berakhir` varchar(155) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `kelas`
+--
+
+INSERT INTO `kelas` (`id_kelas`, `nip`, `id_pelatihan`, `tanggal_berakhir`) VALUES
+(3, '197910072003121001', '2', ''),
+(4, '197708142002121004', '2', ''),
+(7, '197412042005012002', '2', ''),
+(8, '197009261997031007', '3', '08/01/2022');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `keluarga`
 --
 
@@ -532,6 +551,26 @@ INSERT INTO `pegawai` (`id`, `nip`, `nama`, `tempat_lahir`, `tgl_lahir`, `gender
 (19, '123123213213', 'Furqon', 'Ciamis', '1980-02-20', 'l', 'Islam', 'WNI', 1, 'Cacaban', 'Kenaikan Gaji Berkala', 'Penata Muda / IIIa', '2021-12-27', 'honorer', '2021-12-26', 'Aktif', 'KEPALA DINAS', 'PP No 30 Tahun 2015', 1000000, 0, '50', '100', '212313231321', '10', '09', 'paraknd', 'sdfsdf', 'Ciamis', '021565121215'),
 (20, '12356', 'user satu satunya', 'Ciamis', '2006-02-14', 'l', 'Islam', 'WNI', 10, 'Cacaban', 'Kenaikan Pengkat', 'Penata Muda Tk I / IIIb', '0000-00-00', 'honorer', '0000-00-00', 'Tidak Aktif', 'Kepala Bidang Tata Lingkungan', 'PP No 30 Tahun 2015', 100000, 0, '10', '10', '11990990901109', '10', '09', 'paraknd', 'sdfsdf', 'Ciamis', '021565121215'),
 (21, '1122334445566', 'bendahara', 'Ciamis', '1999-02-16', 'p', 'Islam', 'WNI', 4, 'Cacaban', 'Kenaikan Pengkat', 'Penata Muda Tk I / IIIb', '0000-00-00', ' ', '0000-00-00', 'Aktif', 'Bendahara', 'PP No 30 Tahun 2015', 8000000, 0, '1', '2', '', '10', '09', 'paraknd', 'sdfsdf', 'Ciamis', '+6285659503191');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pelatihan`
+--
+
+CREATE TABLE `pelatihan` (
+  `id_pelatihan` int(11) NOT NULL,
+  `nama_pelatihan` varchar(155) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `pelatihan`
+--
+
+INSERT INTO `pelatihan` (`id_pelatihan`, `nama_pelatihan`) VALUES
+(2, 'Latihan Minum Air (ACCU)'),
+(3, 'Latihan Makan Palu'),
+(5, 'Latihan Makan Paku');
 
 -- --------------------------------------------------------
 
@@ -691,7 +730,8 @@ INSERT INTO `user` (`id`, `username`, `nip`, `password`, `nama`, `level`, `gende
 (17, 'user01', '12356', '$2y$10$JrctXHte0pLxorhBWqSGkOAIhQkMFlwBVyTwuACOgw9Yb.Cnl/wpe', 'user satu satunya', 'User', 'l', '12356_images.jpg', 'Aktif'),
 (19, 'bendahara', '1122334445566', '$2y$10$Nc/NCOaUKZwT8S1mcoPHmehg8oqKwOwvvW3Rk1UYqin2qyWUkIniC', 'bendahara', 'Bendahara', 'l', 'avatar.jpg', 'Aktif'),
 (20, 'karumkit', '1111', '$2y$10$1CGXf1iDUS3MgZK6OWsoPu4lnL7PgliVqOyk8kWiaiFhIekTqMcnW', 'Ka Rum Kit', 'Karumkit', 'l', 'avatar.jpg', 'Aktif'),
-(21, 'jlkj', '12542545', '$2y$10$7WpWRkVJf6onv/HiaFo1z.cZKp5oLc8Vd4eVJakkJm556U/IPkPAu', 'aadsdasdasd', 'User', 'l', 'avatar.jpg', 'Aktif');
+(21, 'jlkj', '12542545', '$2y$10$7WpWRkVJf6onv/HiaFo1z.cZKp5oLc8Vd4eVJakkJm556U/IPkPAu', 'aadsdasdasd', 'User', 'l', 'avatar.jpg', 'Aktif'),
+(22, 'diklit', '198304192010012013', '$2y$10$6yHLYvyi73SGGnuUQfI6uu28CdXtqj.8pQXtpGDhoYyj6stfWw3dy', 'Diklit', 'Diklit', 'l', 'avatar.jpg', 'Aktif');
 
 -- --------------------------------------------------------
 
@@ -783,6 +823,12 @@ ALTER TABLE `jml_hari_rekap`
   ADD PRIMARY KEY (`id_jml`);
 
 --
+-- Indexes for table `kelas`
+--
+ALTER TABLE `kelas`
+  ADD PRIMARY KEY (`id_kelas`);
+
+--
 -- Indexes for table `keluarga`
 --
 ALTER TABLE `keluarga`
@@ -799,6 +845,12 @@ ALTER TABLE `mutasi`
 --
 ALTER TABLE `pegawai`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `pelatihan`
+--
+ALTER TABLE `pelatihan`
+  ADD PRIMARY KEY (`id_pelatihan`);
 
 --
 -- Indexes for table `pemberitahuan`
@@ -865,7 +917,7 @@ ALTER TABLE `wa`
 -- AUTO_INCREMENT for table `absensi`
 --
 ALTER TABLE `absensi`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `anak`
@@ -916,6 +968,12 @@ ALTER TABLE `jabatan`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
 
 --
+-- AUTO_INCREMENT for table `kelas`
+--
+ALTER TABLE `kelas`
+  MODIFY `id_kelas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
 -- AUTO_INCREMENT for table `keluarga`
 --
 ALTER TABLE `keluarga`
@@ -926,6 +984,12 @@ ALTER TABLE `keluarga`
 --
 ALTER TABLE `pegawai`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+
+--
+-- AUTO_INCREMENT for table `pelatihan`
+--
+ALTER TABLE `pelatihan`
+  MODIFY `id_pelatihan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `resign`
@@ -943,7 +1007,7 @@ ALTER TABLE `sk`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

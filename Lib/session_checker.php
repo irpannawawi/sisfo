@@ -4,7 +4,7 @@ if (empty($_SESSION['username']) OR empty($_SESSION['level'])) {
 	header('location: '.BASE_URL.'/admin/');
 }else{
 
-	if ($_SESSION['level'] !='Admin' AND $_SESSION['level'] != 'Bendahara' AND $_SESSION['level'] != 'Karumkit' ) {
+	if ($_SESSION['level'] !='Admin' AND $_SESSION['level'] != 'Bendahara' AND $_SESSION['level'] != 'Karumkit' AND $_SESSION['level'] != 'Diklit' ) {
 	header('location: '.BASE_URL.'/admin/'); 
 	}
 }
