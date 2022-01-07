@@ -78,7 +78,7 @@
 				
 				<!-- Slide -->
 				<div class="owl-item">
-					<div class="background_image" style="background-image:url(images/dokter.jpg)"></div>
+					<div class="background_image" style="background-image:url('<?=BASE_URL?>/theme/images/dokter.jpg')"></div>
 					<div class="home_container">
 						<div class="container">
 							<div class="row">
