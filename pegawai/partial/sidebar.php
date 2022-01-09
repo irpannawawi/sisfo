@@ -1,4 +1,9 @@
- <!-- Main Sidebar Container -->
+<?php 
+use Lib\Database\Pelatihan;
+$pelatihanObj = new Pelatihan;
+$nip = $_SESSION['nip'];
+$pelatihan = $pelatihanObj->getPeserta($nip)->fetch_object();
+?> <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
@@ -65,6 +70,16 @@
               <i class="nav-icon fas fa-calendar"></i>
               <p>
                 Pengajuan Cuti
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="<?=BASE_URL?>/pegawai/pelatihan" class="nav-link">
+              <i class="nav-icon fa fa-user-graduate"></i>
+              <p>
+                Pelatihan <?php if(!empty($pelatihan->id_pelatihan)):?> 
+                <span class="badge badge-danger">Baru</span>
+              <?php endif ?>
               </p>
             </a>
           </li>

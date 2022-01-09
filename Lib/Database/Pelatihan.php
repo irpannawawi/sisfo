@@ -54,6 +54,13 @@ class Pelatihan extends Db{
 		return 
 		$this->conn->query($sql);
 	}
+	// READ kelas
+	public function getPeserta($nip){
+		$tgl = date('d/m/Y');
+		$sql = "SELECT kelas.*, pegawai.*, pelatihan.* FROM kelas inner join pegawai on kelas.nip=pegawai.nip inner join pelatihan on kelas.id_pelatihan=pelatihan.id_pelatihan WHERE kelas.nip='$nip' and kelas.tanggal_berakhir >= '$tgl'";
+		return 
+		$this->conn->query($sql);
+	}
 	// DELETE kelas
 	public function deletePeserta($id){
 		$sql = "DELETE FROM kelas WHERE id_kelas='$id'";
