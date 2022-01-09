@@ -1,4 +1,5 @@
 <?php 
+error_reportingZ(0);
 $base_url = 'http://localhost/sisfo';
 
 function TanggalIndo($tanggal, $cetak_hari = false)
