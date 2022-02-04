@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 07, 2022 at 09:15 PM
--- Server version: 10.4.20-MariaDB
--- PHP Version: 7.4.22
+-- Generation Time: Feb 04, 2022 at 02:38 PM
+-- Server version: 10.4.22-MariaDB
+-- PHP Version: 7.4.26
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -151,9 +151,16 @@ INSERT INTO `berkas_capeg` (`id_berkas`, `id_capeg`, `jenis`, `keterangan`, `ber
 
 CREATE TABLE `calon_pegawai` (
   `id` int(11) NOT NULL,
+  `nik` varchar(155) NOT NULL,
   `nama` varchar(155) NOT NULL,
   `username` varchar(155) NOT NULL,
   `wa` varchar(15) NOT NULL,
+  `tempat_tgl_lahir` varchar(155) NOT NULL,
+  `jenis_kelamin` varchar(30) NOT NULL,
+  `status_pernikahan` varchar(30) NOT NULL,
+  `agama` varchar(30) NOT NULL,
+  `alamat` text NOT NULL,
+  `email` varchar(155) NOT NULL,
   `password` varchar(155) NOT NULL,
   `foto` varchar(155) NOT NULL DEFAULT 'avatar.jpg',
   `pengajuan_berkas` varchar(18) NOT NULL DEFAULT '0',
@@ -164,8 +171,8 @@ CREATE TABLE `calon_pegawai` (
 -- Dumping data for table `calon_pegawai`
 --
 
-INSERT INTO `calon_pegawai` (`id`, `nama`, `username`, `wa`, `password`, `foto`, `pengajuan_berkas`, `diterima`) VALUES
-(2, 'udin sam', 'udinsamsudin', '021565121215', '$2y$10$DBJFKsxjBhGK.ZzRLF1HGe8KYTvPtKRtmeYrTe6wMZESQT1bZjebi', '2_depositphotos_247872612-stock-illustration-no-image-available-icon-vector.jpg', '1', 1);
+INSERT INTO `calon_pegawai` (`id`, `nik`, `nama`, `username`, `wa`, `tempat_tgl_lahir`, `jenis_kelamin`, `status_pernikahan`, `agama`, `alamat`, `email`, `password`, `foto`, `pengajuan_berkas`, `diterima`) VALUES
+(9, '12313435445657', 'Irpan Nawawi', 'nawawi', '+6285155431137', 'Ciamis, 31-12-2021', 'Laki-laki', 'kawin', 'islam', 'Dsn. Paburan Ds. Sirnjaya Rt.03 Rw. 02 Kec. Rajadesa', 'irpannawawi.ixd@gmail.com', '$2y$10$.8Fci44/BckdzuFQz87POuU8ZVnNQXkfa2ml7NbhTK.Ajew1NSWHG', 'avatar.jpg', '0', 0);
 
 -- --------------------------------------------------------
 
@@ -189,8 +196,7 @@ CREATE TABLE `cuti` (
 --
 
 INSERT INTO `cuti` (`id_cuti`, `nip`, `jenis_cuti`, `alasan`, `tgl_a`, `tgl_b`, `nip_atasan`, `status`) VALUES
-(20190119004, '12356', 'Sakit', 'sakit bos', '2021-12-31', '2021-12-31', '19741204 200501 2 002', 'Tolak'),
-(20190119008, '12356', 'Sakit', 'asdasd', '2022-01-03', '2022-01-03', '', 'Menunggu');
+(20190119004, '12356', 'Sakit', 'sakit bos', '2021-12-31', '2021-12-31', '19741204 200501 2 002', 'Tolak');
 
 -- --------------------------------------------------------
 
@@ -941,7 +947,7 @@ ALTER TABLE `berkas_capeg`
 -- AUTO_INCREMENT for table `calon_pegawai`
 --
 ALTER TABLE `calon_pegawai`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `cuti`
@@ -971,7 +977,7 @@ ALTER TABLE `jabatan`
 -- AUTO_INCREMENT for table `kelas`
 --
 ALTER TABLE `kelas`
-  MODIFY `id_kelas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_kelas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `keluarga`
