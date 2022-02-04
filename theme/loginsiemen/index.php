@@ -39,23 +39,23 @@
             <input type="submit" value="Login" class="btn solid" />
           </form>
 
-          <form action="../../capeg/register.php" method="POST" class="sign-up-form">
+          <form action="../../capeg/pendaftaran.php" method="POST" class="sign-up-form">
             <h2 class="title">Form Daftar</h2>
             <div class="input-field">
                             <i class="fas fa-user"></i>
-                                <input type="text" placeholder="Nama Lengkap" name="nama" autocomplete="off">
+                                <input type="text" placeholder="Nama Lengkap" name="nama_lengkap" autocomplete="off" required>
                         </div>
                         <div class="input-field">
                             <i class="fas fa-user"></i>
-                                <input type="text" placeholder="Username" name="username" autocomplete="off">
+                                <input type="text" placeholder="Username" name="username" autocomplete="off" required>
                         </div>
                         <div class="input-field">
                             <i class="fa fa-whatsapp"></i>
-                                <input type="text" placeholder="Whatsapp" name="wa">
+                                <input type="text" placeholder="Whatsapp" name="wa" required>
                         </div>
                         <div class="input-field">
                             <i class="fas fa-lock"></i>
-                                <input type="password" placeholder="Kata sandi" name="password">
+                                <input type="password" placeholder="Kata sandi" name="password" required>
                         </div> 
             <input type="submit" class="btn" value="Daftar" />
           </form>

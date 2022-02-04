@@ -45,6 +45,14 @@
             </a>
           </li>
           <li class="nav-item">
+            <a href="<?=BASE_URL?>/capeg/ujian" class="nav-link">
+              <i class="nav-icon fa fa-book"></i>
+              <p>
+                Ujian
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
             <a href="<?=BASE_URL?>/capeg/berkas" class="nav-link">
               <i class="nav-icon fas fa-file"></i>
               <p>

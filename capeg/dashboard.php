@@ -2,7 +2,12 @@
 <?php include 'partial/header.php'; ?>
 <?php include 'partial/topbar.php'; ?>
 <?php include 'partial/sidebar.php'; ?>
-
+<?php require_once '../lib/autoload.php';
+use Lib\Database\Capeg;
+session_start();
+$capegObj = new Capeg;
+$capeg = $capegObj->getById($_SESSION['user_id'])->fetch_object();
+?>
  <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -48,9 +53,41 @@
         						<td><input type="text" class="form-control" name="nama" value="<?=$_SESSION['nama']?>"></td>
         					</tr>
         					<tr>
-        						<th>Username</th>
-        						<td><input type="text" name="username" class="form-control" value="<?=$_SESSION['username']?>"></td>
-        					</tr>
+                    <th>Username</th>
+                    <td><input type="text" name="username" class="form-control" value="<?=$_SESSION['username']?>"></td>
+                  </tr>
+                  <tr>
+                    <th>NIK</th>
+                    <td><input type="text" class="form-control" value="<?=$capeg->nik?>" readonly></td>
+                  </tr>
+                  <tr>
+                    <th>Tempat/Tgl. Lahir</th>
+                    <td><input type="text" class="form-control" value="<?=$capeg->tempat_tgl_lahir?>" readonly></td>
+                  </tr>
+                  <tr>
+                    <th>Jenis Kelamin</th>
+                    <td><input type="text" class="form-control" value="<?=$capeg->jenis_kelamin?>" readonly></td>
+                  </tr>
+                  <tr>
+                    <th>Status Pernikahan</th>
+                    <td><input type="text" class="form-control" value="<?=$capeg->status_pernikahan?>" readonly></td>
+                  </tr>
+                  <tr>
+                    <th>Agama</th>
+                    <td><input type="text" class="form-control" value="<?=$capeg->agama?>" readonly></td>
+                  </tr>
+                  <tr>
+                    <th>Alamat</th>
+                    <td><textarea disabled class="form-control"><?=$capeg->alamat?></textarea readonly></td>
+                  </tr>
+                  <tr>
+                    <th>Email</th>
+                    <td><input type="text" class="form-control" value="<?=$capeg->email?>" readonly></td>
+                  </tr>
+                  <tr>
+                    <th>Telepon</th>
+                    <td><input type="text" class="form-control" value="<?=$capeg->wa?>" readonly></td>
+                  </tr>
         					<tr>
         						<td colspan="2"><input type="submit" class="form-control btn-success" name="submit" value="Simpan"></td>
         					</tr>

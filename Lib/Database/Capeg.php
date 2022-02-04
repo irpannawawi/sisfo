@@ -73,7 +73,18 @@ class Capeg extends Db{
 
 	public function saveCapeg($data, $id=null){
 		if($id==null){
-			$sql = "INSERT INTO calon_pegawai(nama, username, wa, password) VALUES('".$data['nama']."', '".$data['username']."', '".$data['wa']."', '".password_hash($data['password'], PASSWORD_DEFAULT)."')";
+			$password = password_hash($data['password'], PASSWORD_DEFAULT);
+			$username = $data['username'];
+			$nama = $data['nama'];
+			$nik = $data['nik'];
+			$tempat_tgl_lahir = $data['tempat_tgl_lahir'];
+			$jenis_kelamin = $data['jenis_kelamin'];
+			$status_pernikahan = $data['status_pernikahan'];
+			$agama = $data['agama'];
+			$alamat = $data['alamat'];
+			$wa = $data['wa'];
+			$email = $data['email'];
+			$sql = "INSERT INTO calon_pegawai(username, nama, nik, tempat_tgl_lahir, jenis_kelamin, status_pernikahan, agama, alamat, wa, email, password) VALUES('$username', '$nama', '$nik', '$tempat_tgl_lahir', '$jenis_kelamin', '$status_pernikahan', '$agama', '$alamat', '$wa', '$email','$password')";
 				return $this->conn->query($sql);
 		}else{
 			if ($data['password']!='') {
