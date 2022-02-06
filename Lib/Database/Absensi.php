@@ -19,11 +19,20 @@ class Absensi extends Db{
 		$sql = "SELECT absensi.*, pegawai.* FROM absensi INNER JOIN pegawai ON absensi.nip=pegawai.nip WHERE tgl='$tgl' ";
 		return $this->conn->query($sql);
 	}
+	public function getAbsensiBulanan($tgl){
+		$sql = "SELECT absensi.*, pegawai.* FROM absensi INNER JOIN pegawai ON absensi.nip=pegawai.nip WHERE tgl LIKE '$tgl%' ";
+		return $this->conn->query($sql);
+	}
 
-	public function absenMasuk($nip, $foto){
+	public function getAbsensiById($nip, $tgl){
+		$sql = "SELECT absensi.*, pegawai.* FROM absensi INNER JOIN pegawai ON absensi.nip=pegawai.nip WHERE tgl LIKE '$tgl%' AND  absensi.nip='$nip'";
+		return $this->conn->query($sql);
+	}
+
+	public function absenMasuk($nip, $foto, $keterangan='', $tugas=''){
 		$tgl = date('Y-m-d');
 		$jam = date('H:i:s');
-		$sql = "INSERT INTO absensi(nip, tgl, jam_masuk, foto) VALUES('$nip', '$tgl', '$jam', '$foto')";
+		$sql = "INSERT INTO absensi(nip, tgl, keterangan, tugas, jam_masuk, foto) VALUES('$nip', '$tgl', '$keterangan', '$tugas', '$jam', '$foto')";
 		return $this->conn->query($sql);
 	}
 

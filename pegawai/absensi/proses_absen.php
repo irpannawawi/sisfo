@@ -34,11 +34,17 @@ if($absen_today->num_rows >0){
 	// cek absen kedua
 	if($absn->jam_keluar == ''){
 		// do absen kedua
-		$absensiObj->absenKeluar($nip, $fileName);
+		$res = $absensiObj->absenKeluar($nip, $fileName);
 	}
 }else{
 	// absen pertama
-	$absensiObj->absenMasuk($nip, $fileName);
+	$keterangan = $_POST['keterangan'];
+	$tugas = $_POST['tugas'];
+	$res = $absensiObj->absenMasuk($nip, $fileName, $keterangan, $tugas);
 }
-
+if ($res) {
+	// code...
 header("Location: ".BASE_URL."/pegawai/absensi");
+}else{
+	echo $absensiObj->conn->error;
+}

@@ -27,5 +27,7 @@
 <script src="<?=BASE_URL?>/theme/AdminLTE/plugins/chart.js/Chart.min.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="<?=BASE_URL?>/theme/AdminLTE/dist/js/pages/dashboard3.js"></script>
+
+  <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
 </body>
 </html>

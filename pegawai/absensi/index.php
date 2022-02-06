@@ -45,6 +45,7 @@ $absensi = $absensiObj->getByNip($nip);
 							<tr>
 								<th>No</th>
 								<th>Tanggal</th>
+								<th>Lampiran</th>
 								<th>Jam Masuk</th>
 								<th>Jam Keluar</th>
 								<th>Selfie</th>
@@ -55,6 +56,10 @@ $absensi = $absensiObj->getByNip($nip);
 								<tr>
 									<td><?=$n?></td>
 									<td><?=$row['tgl']?></td>
+									<td>
+										<h5><u><?=$row['tugas']?></u></h5>
+										<p><?=$row['keterangan']?></p>
+									</td>
 									<td><?=$row['jam_masuk']?></td>
 									<td><?=$row['jam_keluar']?></td>
 									<td><?=$row['foto']?></td>
@@ -79,9 +84,23 @@ $absensi = $absensiObj->getByNip($nip);
 			</div>
 			<div class="modal-body row">
 				<div id="my_camera" class="col-8"></div>
-				<div class="col-3">
+				<div class="col-4">
 					<div id="imgPreview" class="mb-2"></div>
 					<form method="POST" action="<?=BASE_URL?>/pegawai/absensi/proses_absen.php" encypt="multipart/form-data">
+						<div class="form-group">
+							<label for="tugas">TUGAS</label>
+							<select name="tugas" id="tugas" class="form-control">
+								<option value="TUGAS POKOK">TUGAS POKOK</option>
+								<option value="TUGAS TAMBAHAN">TUGAS TAMBAHAN</option>
+								<option value="TUGAS INSIDENTIL">TUGAS INSIDENTIL</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="keterangan">
+								Keterangan
+							</label>
+							<textarea name="keterangan" class="form-control" id="" cols="15" rows="5"></textarea>
+						</div>
 						<input type="hidden" name="foto" id="foto" required>
 						<input type="submit" class="btn btn-success mb-3 form-control" value="Hadir" name="submit">
 					</form>

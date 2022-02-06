@@ -43,6 +43,7 @@
                 <th>No</th>
                 <th>Nama</th>
                 <th>Tanggal</th>
+                <th>Lampiran</th>
                 <th>Jam Masuk</th>
                 <th>Jam Keluar</th>
                 <th>Selfie</th>
@@ -54,6 +55,10 @@
                   <td><?=$n?></td>
                   <td><?=$row['nama']?></td>
                   <td><?=$row['tgl']?></td>
+                  <td>
+                    <h5><u><?=$row['tugas']?></u></h5>
+                    <p><?=$row['keterangan']?></p>
+                  </td>
                   <td><?=$row['jam_masuk']?></td>
                   <td><?=$row['jam_keluar']?></td>
                   <td><img src="<?=BASE_URL?>/assets/absensi/<?=$row['foto']?>" alt="" height="100" width="100"></td>

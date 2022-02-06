@@ -17,7 +17,7 @@ $cuti = $cutiObj->getByNip($nip);
 		<div class="container-fluid">
 			<div class="row mb-2">
 				<div class="col-sm-6">
-					<h1 class="m-0"><i class="fa fa-calendar"></i> Data Cuti</h1>
+					<h1 class="m-0"><i class="fa fa-file"></i> Data Lampiran</h1>
 				</div><!-- /.col -->
 				<div class="col-sm-6">
 					<ol class="breadcrumb float-sm-right">
@@ -35,11 +35,11 @@ $cuti = $cutiObj->getByNip($nip);
 		<div class="container-fluid">
 			<div class="card">
 				<div class="card-header">
-					<h2 class="float-left">Cuti</h2>
-					<button class="btn btn-danger float-right" data-toggle="modal" data-target="#absen-modal">Ajukan</button>
+					<h2 class="float-left">Lampiran</h2>
+					<button class="btn btn-danger float-right" data-toggle="modal" data-target="#absen-modal">Tambah</button>
 				</div>
 				<div class="card-body">
-					<h3>Riwayat Cuti</h3>
+					<h3>Daftar lampiran</h3>
 					<table class="table table-striped col-12" id="table">
 						<thead>
 							<tr>

@@ -52,6 +52,7 @@
                   <th>Level</th>
                   <th>Status</th>
                   <th>Aksi</th>
+                  <th>Absensi</th>
                 </tr>
               </thead>
               <tbody>
@@ -77,6 +78,9 @@
                           <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#editModal" onClick="fill_edit_form('<?=$row['username']?>', '<?=$row['nip']?>', '<?=$row['nama']?>', '<?=$row['gender']?>', '<?=$row['level']?>', '<?=$row['id']?>')"><i class="fa fa-edit"></i></button>
                           <button class="btn btn-sm btn-danger" onclick="deleteData('<?=$row['id']?>')"><i class="fa fa-trash"></i></button></td>
                         </div>
+                      </td>
+                      <td>
+                        <a class="btn btn-sm btn-info" href="<?=BASE_URL?>/admin/absensi/print_absen_user.php?nip=<?=$row['nip']?>" target="__blank"><i class="fa fa-print"></i></a>
                       </td>
                     </tr>
                   <?php } // endwhile ?>

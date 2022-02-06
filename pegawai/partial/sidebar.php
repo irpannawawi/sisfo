@@ -64,7 +64,15 @@ $pelatihan = $pelatihanObj->getPeserta($nip)->fetch_object();
                 Absensi
               </p>
             </a>
-          </li>
+          </li><!-- 
+          <li class="nav-item">
+            <a href="<?=BASE_URL?>/pegawai/lampiran" class="nav-link">
+              <i class="nav-icon fas fa-file"></i>
+              <p>
+                Lampiran
+              </p>
+            </a>
+          </li> -->
           <li class="nav-item">
             <a href="<?=BASE_URL?>/pegawai/absensi/list_cuti.php" class="nav-link">
               <i class="nav-icon fas fa-calendar"></i>

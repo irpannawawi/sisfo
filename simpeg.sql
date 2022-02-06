@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 04, 2022 at 02:38 PM
+-- Generation Time: Feb 06, 2022 at 03:53 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.26
 
@@ -31,6 +31,8 @@ CREATE TABLE `absensi` (
   `id` int(100) NOT NULL,
   `nip` varchar(50) NOT NULL,
   `tgl` date NOT NULL,
+  `keterangan` text NOT NULL,
+  `tugas` varchar(155) NOT NULL,
   `jam_masuk` varchar(50) NOT NULL,
   `jam_keluar` varchar(50) NOT NULL,
   `foto` varchar(155) NOT NULL
@@ -40,8 +42,8 @@ CREATE TABLE `absensi` (
 -- Dumping data for table `absensi`
 --
 
-INSERT INTO `absensi` (`id`, `nip`, `tgl`, `jam_masuk`, `jam_keluar`, `foto`) VALUES
-(8, '12356', '2022-01-05', '14:05:27', '', '12356_61d54337b1028.png');
+INSERT INTO `absensi` (`id`, `nip`, `tgl`, `keterangan`, `tugas`, `jam_masuk`, `jam_keluar`, `foto`) VALUES
+(10, '12356', '2022-02-06', 'asdasd', 'TUGAS POKOK', '21:43:14', '21:44:36', '12356_61ffde8260780.png');
 
 -- --------------------------------------------------------
 
@@ -709,6 +711,21 @@ CREATE TABLE `s_kenaikan` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tugas`
+--
+
+CREATE TABLE `tugas` (
+  `id_tugas` int(11) NOT NULL,
+  `nip` varchar(155) NOT NULL,
+  `tanggal` varchar(155) NOT NULL,
+  `lampiran` varchar(155) NOT NULL,
+  `keterangan` text NOT NULL,
+  `tugas` varchar(155) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `user`
 --
 
@@ -901,6 +918,12 @@ ALTER TABLE `s_kenaikan`
   ADD PRIMARY KEY (`id_s_kenaikan`);
 
 --
+-- Indexes for table `tugas`
+--
+ALTER TABLE `tugas`
+  ADD PRIMARY KEY (`id_tugas`);
+
+--
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
@@ -923,7 +946,7 @@ ALTER TABLE `wa`
 -- AUTO_INCREMENT for table `absensi`
 --
 ALTER TABLE `absensi`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `anak`
@@ -1008,6 +1031,12 @@ ALTER TABLE `resign`
 --
 ALTER TABLE `sk`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `tugas`
+--
+ALTER TABLE `tugas`
+  MODIFY `id_tugas` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `user`

@@ -158,6 +158,14 @@
                   Pengajuan Resign
                 </p>
               </a>
+            </li> 
+            <li class="nav-item">
+              <a href="<?=BASE_URL?>/admin/absensi" class="nav-link">
+                <i class="nav-icon fa fa-history"></i>
+                <p>
+                  Absensi
+                </p>
+              </a>
             </li>
             <li class="nav-item">
               <a href="<?=BASE_URL?>/admin/mutasi" class="nav-link">
